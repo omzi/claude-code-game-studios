@@ -207,7 +207,7 @@ Fixture defaults.
 
 **Fixture:**
 - As Case 1; `docs/engine-reference/godot/VERSION.md` pins 4.7
-- `godot --version` reports `4.5.1.stable`
+- `godot.console --version` reports `4.5.1.stable`
 - The user picks "pin the newer one and upgrade later"
 
 **Input:** `/setup-engine godot 4.7`
@@ -233,7 +233,7 @@ Fixture defaults.
 ### Case 7: Godot not on PATH — the probed executable goes into `commands.*`
 
 **Fixture:**
-- As Case 1, on Windows; `godot --version` fails — `godot` is not on `PATH`
+- As Case 1, on Windows; `godot.console --version` fails — `godot.console` is not on `PATH`
 - The probe finds `C:/Program Files/Godot/Godot_v4.7.2-stable_win64.exe`, which reports `4.7.2.stable`
 - The user names the export preset `Windows Desktop`
 

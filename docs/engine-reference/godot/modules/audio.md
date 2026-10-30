@@ -83,6 +83,9 @@ func play_pooled(stream: AudioStream) -> void:
 ```gdscript
 # One AudioStreamSynchronized holds every stem; all stems play in lockstep.
 # Add and remove layers by fading a stem's volume, never by starting it late.
+# Checked against the 4.7 class reference: get/set_sync_stream_volume(index, db)
+# and MethodTweener.set_trans/set_ease exist as used. The reference does not say
+# whether a volume change reaches a stem that is already playing: verify in-engine.
 @onready var music: AudioStreamPlayer = %Music
 
 func fade_stem(index: int, to_db: float, seconds: float) -> void:
@@ -98,16 +101,31 @@ func fade_stem(index: int, to_db: float, seconds: float) -> void:
 # Clips and transitions (fade mode, fade beats, sync to beat or bar) are set up
 # on the AudioStreamInteractive resource in the editor; code only asks to switch.
 func go_to_section(clip_name: StringName) -> void:
+    # get_stream_playback() has no playback to return until play() has run.
     var playback := music.get_stream_playback() as AudioStreamPlaybackInteractive
+    if playback == null:
+        return
     playback.switch_to_clip_by_name(clip_name)
 ```
 
 ### Music Clock (BeatClock)
 BeatClock (the studio autoload in addons/core) polls the playback position
 every frame: `get_playback_position() + AudioServer.get_time_since_last_mix()
-- AudioServer.get_output_latency()`, and emits beat and bar signals. This
-polling is intended and overrides the "_process() for audio timing" mistake
-below.
+- output_latency`, and emits beat and bar signals. This polling is intended and
+overrides the "_process() for audio timing" mistake below. Cache
+`output_latency` from `AudioServer.get_output_latency()` when playback starts
+rather than calling it each frame: the 4.7 class reference says the call "can be
+expensive; it is not recommended to call get_output_latency() every frame".
+```gdscript
+var _output_latency: float = 0.0
+
+func start(player: AudioStreamPlayer) -> void:
+    _output_latency = AudioServer.get_output_latency()
+    player.play()
+
+func _song_time(player: AudioStreamPlayer) -> float:
+    return player.get_playback_position() + AudioServer.get_time_since_last_mix() - _output_latency
+```
 
 ## Common Mistakes
 - Creating new AudioStreamPlayer nodes at runtime instead of pooling

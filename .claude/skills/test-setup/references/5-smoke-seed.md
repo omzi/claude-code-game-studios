@@ -33,7 +33,7 @@ Create `tests/smoke/critical-paths.md`:
 
 ## Performance
 
-7. No visible frame rate drops on target hardware (60fps target)
+7. No visible frame rate drops on target hardware (propose frame-rate options; Omzi chooses)
 8. No memory growth over 5 minutes of play (once core loop is implemented)
 ```
 

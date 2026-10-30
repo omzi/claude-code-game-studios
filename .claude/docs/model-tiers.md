@@ -38,14 +38,14 @@ model ships.
 | Tier | `model:` | When to use |
 |------|----------|-------------|
 | **Haiku** | `haiku` | Read-only status checks, formatting, simple lookups — no creative judgment needed |
-| **Sonnet** | `sonnet` | Implementation, design authoring, analysis of individual systems — default for most work |
+| **Sonnet** | `sonnet` | Implementation, design authoring, analysis of individual systems. No skill or agent in this studio uses it (Ivora studio patches, section 14) |
 | **Opus** | `opus` | Multi-document synthesis, high-stakes phase gate verdicts, cross-system holistic review |
 | **Session** | `inherit` | Agents only — runs on whatever model the session runs |
 
 Skills with `model: haiku` (5): `/help`, `/onboard`, `/project-stage-detect`,
 `/scope-check`, `/sprint-status`
 
-> `/patch-notes` and `/changelog` are `sonnet`, not `haiku`: both produce
+> `/patch-notes` and `/changelog` are `opus`, not `haiku`: both produce
 > **player-facing** copy and need judgement the cheapest tier is defined as not
 > doing. Full reasoning in each skill's own header.
 >
@@ -54,21 +54,25 @@ Skills with `model: haiku` (5): `/help`, `/onboard`, `/project-stage-detect`,
 > configured rigor against the project's observable working practice. That is
 > synthesis, which is what the Haiku row is defined as excluding.
 
-Skills with `model: opus` (3): `/architecture-review`, `/gate-check`, `/review-all-gdds`
+Skills with `model: opus` (69): every other template skill. `/architecture-review`,
+`/gate-check` and `/review-all-gdds` were already `opus`; the 66 that were
+`sonnet` moved to `opus` in the Ivora studio patches (section 14, approved by
+Omzi on 29th October, 2026). The studio's `/game-dev` skill declares no tier and
+runs on the session's model.
 
-All other skills are Sonnet. When creating a new skill, assign Haiku if it only
-reads and formats; assign Opus if it must synthesize 5+ documents with
-high-stakes output; otherwise write `model: sonnet` explicitly. Every skill
+No skill is on Sonnet. When creating a new skill, assign Haiku if it only reads
+and formats; otherwise write `model: opus` explicitly. Every template skill
 declares a tier. Whether the tier takes effect depends on how the skill starts
 (see the table at the top of this file).
 
 **Agent model tiers.** 30 agents use `model: inherit` and run on the session's
-model. 19 are pinned:
+model, which starts on Opus (`"model": "opus"` in `.claude/settings.json`). 19 are
+pinned, all to `opus`:
 
-- **opus (3):** `creative-director`, `producer`, `technical-director`. Under an
+- **opus, directors (3):** `creative-director`, `producer`, `technical-director`. Under an
   Opus session an `opus` pin runs on the session's exact model, `[1m]` included,
   so it never gets a smaller window than its parent.
-- **sonnet (16):** `lead-programmer`, `prototyper`, `devops-engineer`,
+- **opus, formerly sonnet (16):** `lead-programmer`, `prototyper`, `devops-engineer`,
   `community-manager` and the 12 engine sub-specialists:
   `godot-csharp-specialist`, `godot-gdextension-specialist`,
   `godot-gdscript-specialist`, `godot-shader-specialist`,
@@ -80,9 +84,9 @@ model. 19 are pinned:
   `unity-ui-specialist` and `ue-umg-specialist`; `/team-release` spawns
   `devops-engineer` and `community-manager`, and `/team-live-ops` spawns
   `community-manager`.
-- **haiku (0):** no agent. The Haiku row above is for read-only lookups and
+- **sonnet (0)** and **haiku (0):** no agent. The Haiku row above is for read-only lookups and
   formatting; every agent drafts, writes or judges. Building CI pipelines and
-  writing player-facing text are Sonnet work, as they are for `/patch-notes`.
+  writing player-facing text are Opus work, as they are for `/patch-notes`.
 
 Every agent not named above is `inherit`. The `model:` line in the agent's own
 file is what runs.
