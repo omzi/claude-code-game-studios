@@ -7,3 +7,5 @@
 .claude/docs/hooks-reference.md
 .claude/docs/hooks-reference/post-merge-asset-validation.md
 docs/WORKFLOW-GUIDE.md
+.claude/scripts/naming-check.sh
+studio-tests/scripts/naming-check.test.sh
