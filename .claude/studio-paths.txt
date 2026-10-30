@@ -3,3 +3,7 @@
 .claude/skills/game-dev/
 .claude/scripts/studio-update.sh
 .claude/studio-paths.txt
+.claude/docs/effects-map.md
+.claude/docs/hooks-reference.md
+.claude/docs/hooks-reference/post-merge-asset-validation.md
+docs/WORKFLOW-GUIDE.md
