@@ -9,9 +9,9 @@ paths:
 
 - UI must NEVER own or directly modify game state — display only, use commands/events to request changes
 - All UI text must go through the localization system — no hardcoded user-facing strings
-- Support both keyboard/mouse AND gamepad input for all interactive elements
-- All animations must be skippable and respect user motion/accessibility preferences
+- Touch is the primary input; every interactive element works with touch (and mouse for editor testing). Gamepad only if the game's brief says so.
+- Propose to Omzi: skippable animations that respect user motion/accessibility preferences
 - UI sounds trigger through the audio event system, not directly
 - UI must never block the game thread
-- Scalable text and colorblind modes are mandatory, not optional
+- Propose to Omzi: scalable text and colourblind modes
 - Test all screens at minimum and maximum supported resolutions

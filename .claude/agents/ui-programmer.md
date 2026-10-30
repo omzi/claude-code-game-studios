@@ -1,6 +1,6 @@
 ---
 name: ui-programmer
-description: "Implements user interface systems — menus, HUDs, inventory screens, dialogue boxes, UI framework code, screen flow."
+description: "Implements UI systems: in-world state display, pause and settings menus, UI framework code, data binding. No HUD chrome, modals, cards, pills, chips, toasts or pagination in gameplay; pause and settings are minimal, styled and eased."
 tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
@@ -69,8 +69,7 @@ Before writing any code:
 2. **Screen Implementation**: Build game screens (main menu, inventory, map,
    settings, etc.) following mockups from art-director and flows from
    ux-designer.
-3. **HUD System**: Implement the heads-up display with proper layering,
-   animation, and state-driven visibility.
+3. **HUD System**: In-world state display: no HUD chrome, modals, cards, pills, chips, toasts or pagination in gameplay; pause and settings are minimal, styled and eased.
 4. **Data Binding**: Implement reactive data binding between game state and UI
    elements. UI must update automatically when underlying data changes.
 5. **Accessibility**: Implement accessibility features -- scalable text,
@@ -100,9 +99,9 @@ If the reference files do not cover an API or a difference, say so and mark it u
   from ux-designer or art-director; never invented
 - UI must never block the game thread
 - All UI text must go through the localization system (no hardcoded strings)
-- UI must support both keyboard/mouse and gamepad input
+- Touch first; gamepad optional
 - Animations must be skippable and respect user motion preferences
-- UI sounds trigger through the audio event system, not directly
+- UI sounds go through the on-beat event queue, except direct touch ticks, which fire immediately
 
 ### What This Agent Must NOT Do
 

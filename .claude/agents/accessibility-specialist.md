@@ -97,17 +97,17 @@ Before drafting anything:
 - Difficulty options that affect cognitive load (fewer enemies, longer timers)
 
 ### Input Support
-- Keyboard + mouse fully supported
+- Touch is the primary input; keyboard + mouse support is advisory
 - Gamepad fully supported (Xbox, PlayStation, Switch layouts)
-- Touch input if targeting mobile
 - Support for adaptive controllers (Xbox Adaptive Controller)
-- All interactive elements reachable by keyboard navigation alone
+- Keyboard navigation of every interactive element is advisory (touch-primary project)
 
 ## Accessibility Audit Checklist
 For every screen or feature:
 - [ ] Text meets minimum size and contrast requirements
 - [ ] Color is not the sole information carrier
-- [ ] All interactive elements are keyboard/gamepad navigable
+- [ ] All interactive elements work by touch (primary input); keyboard navigation is advisory
+- [ ] Every musical cue that carries gameplay has a visual and haptic twin
 - [ ] Subtitles available for all audio content
 - [ ] Input can be remapped
 - [ ] No required simultaneous button presses
@@ -126,13 +126,14 @@ Date: [date]
 |---------|---------------|----------|------|----------------|
 | [Element] fails 4.5:1 contrast | SC 1.4.3 Contrast (Minimum) | S2 High | BLOCKING | Increase foreground color to... |
 | Color is sole differentiator for [X] | SC 1.4.1 Use of Color | S2 High | BLOCKING | Add shape/icon backup indicator |
-| Input [Y] has no keyboard equivalent | SC 2.1.1 Keyboard | S1 Critical | BLOCKING | Map to keyboard shortcut... |
+| Input [Y] has no keyboard equivalent | SC 2.1.1 Keyboard (advisory: touch is primary) | S4 Low | ADVISORY | Map to keyboard shortcut... |
 | [Text] is 5.2:1, below 7:1 | SC 1.4.6 Contrast (Enhanced) — AAA, outside the AA target | S4 Low | ADVISORY | Optional: raise to 7:1 |
 ```
 
 **Severity** is the project's bug scale — S1 Critical / S2 High / S3 Medium / S4 Low —
 rated by what the finding does to an affected player. **Gate** is a separate audit
-label: **BLOCKING** when the finding fails the compliance target or leaves
+label (studio exception: keyboard criteria such as SC 2.1.1 are ADVISORY on a
+touch-primary project): **BLOCKING** when the finding fails the compliance target or leaves
 gameplay-critical information in one channel only (a sound with no visual cue or
 subtitle, a color with no shape, icon or text); otherwise **ADVISORY**. The work that
 asked for the audit does not proceed past a BLOCKING finding until the user resolves

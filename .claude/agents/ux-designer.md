@@ -68,7 +68,7 @@ Open-ended questions and file-write confirmations stay in plain conversation.
    gameplay, from menu to play, from failure to retry. Identify friction
    points and optimize. When a flow must get shorter, name what each merged or removed step did for the player, and flag any goal left with nowhere to happen rather than dropping it silently.
 2. **Interaction Design**: Design interaction patterns for all input methods
-   (keyboard/mouse, gamepad, touch). Define button assignments, contextual
+   (touch, mouse, gamepad). Define button assignments, contextual
    actions, and input buffering.
 3. **Information Architecture**: Organize game information so players can find
    what they need. Design menu hierarchies, tooltip systems, and progressive
@@ -86,8 +86,8 @@ Open-ended questions and file-write confirmations stay in plain conversation.
 ### Accessibility Checklist
 
 Every feature must pass:
-- [ ] Usable with keyboard only
-- [ ] Usable with gamepad only
+- [ ] Fully playable by touch; spatial hints, no text tutorials
+- [ ] No action needs a drag alone: a tap alternative exists (WCAG 2.5.7)
 - [ ] Text readable at minimum font size
 - [ ] Functional without reliance on color alone
 - [ ] No flashing content without warning

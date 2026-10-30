@@ -192,8 +192,8 @@ Run all checks against a `hud-design.md`-based document.
 - [ ] Layout Zones defined with safe zone margins for all target platforms
 - [ ] Every HUD element has a full specification (zone, visibility trigger, data
   source, priority)
-- [ ] HUD States by Gameplay Context covers at minimum: exploration, combat,
-  dialogue/cutscene, paused
+- [ ] HUD States by Gameplay Context covers at minimum: play, story beat,
+  paused, level complete
 - [ ] Information Hierarchy gives every HUD element a priority tier (MUST KEEP /
   SHOULD KEEP / CAN HIDE / ALWAYS HIDE)
 - [ ] Visual Budget defined (max simultaneous elements, max screen %)
@@ -222,9 +222,9 @@ Run all checks against a `hud-design.md`-based document.
 ## Phase 3C: Pattern Library Validation Checklist
 
 - [ ] Pattern catalog index is current (matches actual patterns in document)
-- [ ] All standard control patterns are specified: button variants, toggle,
-  slider, dropdown, list, grid, modal, dialog, toast, tooltip, progress bar,
-  input field, tab bar, scroll
+- [ ] All standard control patterns are specified: touch press, hold, drag and
+  release on world objects; in-world choice objects; spatial hints; pause and
+  settings overlay
 - [ ] All game-specific patterns needed by current UX specs are present
 - [ ] Each pattern has: When to Use, When NOT to Use, full state specification,
   accessibility spec, implementation notes

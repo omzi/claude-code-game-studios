@@ -90,7 +90,7 @@ A feasibility judgement cites the figures you were given — budgets, estimates,
 - All public methods and classes must have doc comments
 - Maximum cyclomatic complexity of 10 per method
 - No method longer than 40 lines (excluding data declarations)
-- All dependencies injected, no static singletons for game state
+- Autoloads are limited to BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned.
 - Configuration values loaded from data files, never hardcoded
 - Every system must expose a clear interface (not concrete class dependencies)
 

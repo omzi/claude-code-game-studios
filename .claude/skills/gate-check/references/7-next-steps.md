@@ -60,7 +60,7 @@ Gate passed. What would you like to do next?
 > 1. `/create-control-manifest` — extract technical rules from Accepted ADRs, if not done yet (`/create-epics` requires it at `full`)
 > 2. `/vertical-slice` — build the Vertical Slice **FIRST**, before writing epics or stories
 > 3. Playtest → `/playtest-report` — at least 1 documented session, 3+ better before committing the full team. `/gate-check production` treats the slice as recommended: skipped → CONCERNS, unplayed → NOT ASSESSED
-> 4. `/ux-design [screen]` — UX specs for main menu, core HUD, pause menu (if not done)
+> 4. `/ux-design [screen]` — UX specs for the in-world state spec, spatial level select, and the minimal pause and settings overlay (if not done)
 > 5. `/create-epics layer:foundation` then `/create-epics layer:core` — plan after fun is validated
 > 6. `/create-stories [epic-slug]` for each epic
 > 7. `/sprint-plan new`

@@ -23,9 +23,9 @@ No gate IDs assigned.
 **Expected behavior:**
 - Before drafting, asks clarifying questions (core player goal, constraints such as input methods and scope, reference games) and presents 2-4 flow options with pros/cons grounded in UX theory (e.g., mental models, progressive disclosure, Fitts's Law), with a recommendation and the final choice deferred to the user
 - The drafted flow maps each step and transition: open, browse, select item, sub-actions (equip/drop/combine), close — and names the friction points it removes
-- Specifies button assignments and contextual actions for each input method in scope (keyboard/mouse, gamepad, touch if applicable)
+- Specifies button assignments and contextual actions for each input method in scope (touch first, then mouse and gamepad if in scope)
 - Specifies player feedback for each action (visual, audio, haptic) so the player always knows what happened and why
-- Checks the flow against the agent's Accessibility Checklist (keyboard-only, gamepad-only, not reliant on color alone, readable at minimum font size)
+- Checks the flow against the agent's Accessibility Checklist (fully playable by touch with spatial hints and no text tutorials, not reliant on color alone, readable at minimum font size)
 - Does NOT produce visual design (colors, icons) or implementation code
 - Asks "May I write this to [filepath]?" before writing the spec
 
@@ -35,7 +35,7 @@ No gate IDs assigned.
 - Does NOT produce implementation code
 - Explicitly states that UI code implementation belongs to `ui-programmer`
 - Redirects the request to `ui-programmer`
-- Offers the part of the request it does own: the drag-and-drop interaction design (drag affordance, valid/invalid drop feedback, and a non-drag equivalent so the screen stays usable with gamepad only and keyboard only) for ui-programmer to implement against
+- Offers the part of the request it does own: the drag-and-drop interaction design (drag affordance, valid/invalid drop feedback, and a non-drag equivalent (tap to select, tap to place) so the screen stays fully playable by touch) for ui-programmer to implement against
 
 ### Case 3: Flow depth conflict — simplification
 **Input:** "The lead designer says the current 5-step crafting flow is too deep; maximum 3 steps allowed."

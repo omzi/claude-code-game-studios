@@ -79,7 +79,38 @@ func play_pooled(stream: AudioStream) -> void:
             return
 ```
 
+### Music Stems (AudioStreamSynchronized, 4.3+)
+```gdscript
+# One AudioStreamSynchronized holds every stem; all stems play in lockstep.
+# Add and remove layers by fading a stem's volume, never by starting it late.
+@onready var music: AudioStreamPlayer = %Music
+
+func fade_stem(index: int, to_db: float, seconds: float) -> void:
+    var sync_stream := music.stream as AudioStreamSynchronized
+    var from_db: float = sync_stream.get_sync_stream_volume(index)
+    create_tween().tween_method(
+        func(db: float) -> void: sync_stream.set_sync_stream_volume(index, db),
+        from_db, to_db, seconds).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+```
+
+### Section Changes (AudioStreamInteractive, 4.3+)
+```gdscript
+# Clips and transitions (fade mode, fade beats, sync to beat or bar) are set up
+# on the AudioStreamInteractive resource in the editor; code only asks to switch.
+func go_to_section(clip_name: StringName) -> void:
+    var playback := music.get_stream_playback() as AudioStreamPlaybackInteractive
+    playback.switch_to_clip_by_name(clip_name)
+```
+
+### Music Clock (BeatClock)
+BeatClock (the studio autoload in addons/core) polls the playback position
+every frame: `get_playback_position() + AudioServer.get_time_since_last_mix()
+- AudioServer.get_output_latency()`, and emits beat and bar signals. This
+polling is intended and overrides the "_process() for audio timing" mistake
+below.
+
 ## Common Mistakes
 - Creating new AudioStreamPlayer nodes at runtime instead of pooling
 - Not using audio buses for volume categories (Music, SFX, UI, Voice)
-- Using `_process()` for audio timing instead of signals (`finished`)
+- Using `_process()` for audio timing instead of signals (`finished`); the
+  exception is BeatClock polling the playback position every frame, which is intended

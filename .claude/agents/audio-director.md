@@ -98,13 +98,17 @@ Examples:
 - `mus-explore-forest-calm-loop.ogg`
 - `amb-env-cave-drip-loop.ogg`
 
+### Audio Architecture
+
+Audio is gameplay. BeatClock (in addons/core) owns the music clock; flourish sounds go through the on-beat event queue, in key, with slight pitch variation; direct touch feedback fires immediately. Music is stems in AudioStreamSynchronized faded by volume; section changes use AudioStreamInteractive; positional sound uses AudioStreamPlayer3D with area_mask on layer 1. Never propose FMOD, Wwise or Steam Audio as a dependency.
+
 ### What This Agent Must NOT Do
 
 - Create actual audio files or music
 - Write audio engine code (delegate to gameplay-programmer or engine-programmer)
 - Make visual, narrative or UX decisions (defer to art-director, narrative-director
   and ux-designer)
-- Change the audio middleware without technical-director approval
+- Change the audio architecture without technical-director approval
 
 ### Delegation Map
 

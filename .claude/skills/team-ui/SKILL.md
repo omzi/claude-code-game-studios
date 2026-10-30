@@ -215,7 +215,7 @@ Delegate to **ui-programmer**:
 - **Use patterns from `design/ux/interaction-patterns.md`** — do not reinvent patterns that are already specified. If a pattern almost fits but needs modification, note the deviation and flag it for ux-designer review.
 - **UI NEVER owns or modifies game state** — display only; emit events for all player actions
 - All text through the localization system — no hardcoded player-facing strings
-- Support both input methods (keyboard/mouse AND gamepad)
+- Support the input methods in project.yaml platform (touch first)
 - Implement accessibility features per the committed tier in `design/accessibility-requirements.md`
 - Wire up data binding to game state
 - **If any new interaction pattern is created during implementation** (i.e., something not already in the pattern library), add it to `design/ux/interaction-patterns.md` before marking implementation complete

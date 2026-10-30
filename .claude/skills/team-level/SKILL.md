@@ -188,7 +188,7 @@ Spawn the `art-director` agent with the finalized layout from Step 2:
 - Produce location-specific concept specs for key spaces (entrance, key encounter zones, landmarks, exits)
 - Specify which art assets are unique to this area vs. shared from the global pool
 - Define sight-line and lighting setups per key space (these are now layout-informed, not directional)
-- Specify VFX needs that are specific to this area's layout (weather volumes, particles, atmospheric effects)
+- Specify VFX needs that are specific to this area's layout (weather via particles, depth and height fog and fake light cards (no FogVolumes on Mobile), particles, atmospheric effects)
 - Flag any locations where the layout creates visual direction conflicts with the Step 1 targets — surface these as production risks
 
 Spawn the `accessibility-specialist` agent in parallel to:

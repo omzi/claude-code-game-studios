@@ -110,9 +110,13 @@ Identify the system category (engine, gameplay, AI, networking, UI, tools) and e
 - [ ] Public methods and classes have doc comments
 - [ ] Cyclomatic complexity under 10 per method
 - [ ] No method exceeds 40 lines (excluding data declarations)
-- [ ] Dependencies are injected (no static singletons for game state)
+- [ ] Dependencies are injected. Autoloads are limited to BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned.
 - [ ] Configuration values loaded from data files
-- [ ] Systems expose interfaces (not concrete class dependencies)
+- [ ] Systems expose interfaces (not concrete class dependencies); in GDScript read "interfaces" as typed signals and class_name base classes
+- [ ] Static typing everywhere (no untyped declarations or unsafe access)
+- [ ] Every interaction meets the juice checklist (game-dev skill section 2)
+- [ ] Naming: TitleCase class scripts and component scenes, lowercase-hyphen everything else, no underscores or spaces in res://
+- [ ] Every node created in code that must persist has owner set to the scene root
 
 ---
 
@@ -211,7 +215,7 @@ Collect all specialist findings before producing output.
 ### ADR Compliance: [NOT ASSESSED / NO ADRS FOUND / COMPLIANT / DRIFT / VIOLATION]
 [List each ADR checked, result, and any deviations with severity]
 
-### Standards Compliance: [X/6 passing]
+### Standards Compliance: [X/10 passing]
 [List failures with line references; a missing doc comment names the method or class]
 
 ### Architecture: [NOT ASSESSED / CLEAN / MINOR ISSUES / VIOLATIONS FOUND]

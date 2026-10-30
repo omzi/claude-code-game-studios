@@ -12,7 +12,7 @@ Do not guess at post-cutoff API signatures — look them up first.
 
 - All public APIs require doc comments
 - Gameplay values must be **data-driven** (external config files), never hardcoded
-- Prefer dependency injection over singletons for testability
+- Autoloads are limited to BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned.
 - Architecture decisions go in `docs/architecture/` as ADRs — **how many depends on
   `modes.workflow`**: all at `full`, critical only at `standard`, none required at
   `minimal` (the decision log carries them)

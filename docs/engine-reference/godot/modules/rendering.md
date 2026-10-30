@@ -63,6 +63,11 @@ Project Settings → Rendering → Renderer:
 Windows default backend: D3D12 (was Vulkan pre-4.6)
 ```
 
+### Mobile renderer
+TAA, SSR, SSAO, SDFGI and volumetric fog are not available on Mobile.
+- Not available on Mobile: volumetric fog, FogVolumes, SSAO, SSR, SSIL, SDFGI, VoxelGI, TAA, contact shadows, normal-roughness buffer, automatic mesh instancing.
+- Available: depth and height fog, glow, depth of field, LightmapGI (bake and render), ReflectionProbes (8 per mesh), decals, MSAA, FXAA, SMAA, PCSS soft shadows, screen and depth texture shaders, CompositorEffects, GPU particles with trails.
+
 ## Common Mistakes
 - Assuming Vulkan is the default backend on Windows (D3D12 since 4.6)
 - Using manual viewport chains instead of Compositor for post-processing

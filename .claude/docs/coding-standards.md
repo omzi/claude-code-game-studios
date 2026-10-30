@@ -6,7 +6,7 @@
   and none required at `minimal`, where the decision log and `design/game-brief.md`
   carry the rationale instead. See `.claude/docs/workflow-modes.md`.
 - Gameplay values must be data-driven (external config), never hardcoded
-- All public methods must be unit-testable (dependency injection over singletons)
+- All public methods must be unit-testable. Autoloads are limited to BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned.
 - Commits must reference the relevant design document or task ID
 - **Commit messages**: Use Conventional Commits format — `feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`. Reference the story or task ID in the body (e.g., `Story: EPIC-001-S02`).
 - **Verification-driven development**: Write tests first when adding gameplay systems.

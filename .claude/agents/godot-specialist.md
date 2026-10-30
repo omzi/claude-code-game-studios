@@ -108,7 +108,7 @@ Before writing any code:
 - Profile with Godot's built-in profiler and monitors — check `Performance` singleton
 
 ### Autoloads
-- Use sparingly — only for truly global systems (audio manager, save system, events bus)
+- Only the four studio autoloads: BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned
 - Autoloads must not depend on scene-specific state
 - Never use autoloads as a dumping ground for convenience functions
 - Document every autoload's purpose in CLAUDE.md

@@ -23,8 +23,7 @@
 - [ ] Vertical Slice build exists and is playable (not just scope-defined) — **recommended, not blocking**; if absent, surface as CONCERNS
 - [ ] Vertical Slice has been playtested with at least 1 documented session — **recommended, not blocking**; if absent, surface as CONCERNS
 - [ ] Vertical Slice playtest report exists at `production/qa/playtests/` or equivalent — **recommended, not blocking**; if absent, surface as CONCERNS
-- [ ] UX specs exist for key screens: main menu, core gameplay HUD (at `design/ux/`), pause menu
-- [ ] HUD design document exists at `design/ux/hud.md` (if game has in-game HUD)
+- [ ] UX specs exist (at `design/ux/`) for the in-world state spec, spatial level select, and a minimal pause and settings overlay
 - [ ] All key screen UX specs have passed `/ux-review` (verdict APPROVED or NEEDS REVISION accepted)
 
 **Quality Checks:**

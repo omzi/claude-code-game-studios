@@ -188,15 +188,15 @@ Before writing any code:
 - Use Resources instead of dictionaries for structured data
 
 ### Autoload Pattern
-- Use Autoloads sparingly — only for truly global systems:
+- Exactly four Autoloads are allowed; anything else is injected or scene-owned:
+  - `BeatClock` — the music clock (beat and bar signals), in addons/core
   - `EventBus` — global signal hub for cross-system communication
-  - `GameManager` — game state management (pause, scene transitions)
-  - `SaveManager` — save/load system
-  - `AudioManager` — music and SFX management
+  - `SaveService` — save/load system
+  - `Analytics` — local, offline event logging
 - Autoloads must NOT hold references to scene-specific nodes
 - Access via the singleton name, typed:
   ```gdscript
-  var game_manager: GameManager = GameManager  # typed autoload access
+  var save_service: SaveService = SaveService  # typed autoload access
   ```
 
 ### Composition Over Inheritance

@@ -15,7 +15,7 @@ paths:
 - State machines must have explicit transition tables with documented states
 - Write unit tests for all gameplay logic — separate logic from presentation
 - Document which design doc each feature implements in code comments
-- No static singletons for game state — use dependency injection
+- Autoloads are limited to BeatClock, EventBus, SaveService and Analytics; anything else is injected or scene-owned.
 
 ## Examples
 

@@ -62,28 +62,15 @@ Before writing any code:
 - Write and optimize Godot shading language (`.gdshader`) shaders
 - Design visual shader graphs for artist-friendly material workflows
 - Implement particle shaders and GPU-driven visual effects
-- Configure rendering features (Forward+, Mobile, Compatibility)
+- Configure rendering features (the studio renderer is Mobile)
 - Optimize rendering performance (draw calls, overdraw, shader cost)
 - Create post-processing effects via compositor or `WorldEnvironment`
 
 ## Renderer Selection
 
-### Forward+ (Default for Desktop)
-- Use for: PC, console, high-end mobile
-- Features: clustered lighting, volumetric fog, SDFGI, SSAO, SSR, glow
-- Supports unlimited real-time lights via clustered rendering
-- Best visual quality, highest GPU cost
-
-### Mobile Renderer
-- Use for: mobile devices, low-end hardware
-- Features: limited lights per object (8 omni + 8 spot), no volumetrics
-- Lower precision, fewer post-process options
-- Significantly better performance on mobile GPUs
-
-### Compatibility Renderer
-- Use for: web exports, very old hardware
-- OpenGL 3.3 / WebGL 2 based — no compute shaders
-- Most limited feature set — plan visual design around this if targeting web
+### Mobile Renderer (the studio renderer)
+- Not available on Mobile: volumetric fog, FogVolumes, SSAO, SSR, SSIL, SDFGI, VoxelGI, TAA, contact shadows, normal-roughness buffer, automatic mesh instancing.
+- Available: depth and height fog, glow, depth of field, LightmapGI (bake and render), ReflectionProbes (8 per mesh), decals, MSAA, FXAA, SMAA, PCSS soft shadows, screen and depth texture shaders, CompositorEffects, GPU particles with trails.
 
 ## Godot Shading Language Standards
 
@@ -100,7 +87,6 @@ Before writing any code:
 - `shader_type spatial` — 3D mesh rendering
 - `shader_type canvas_item` — 2D sprites, UI elements
 - `shader_type particles` — GPU particle behavior
-- `shader_type fog` — volumetric fog effects
 - `shader_type sky` — procedural sky rendering
 
 ### Code Standards
@@ -183,7 +169,7 @@ void fragment() {
 
 ### WorldEnvironment
 - Use `WorldEnvironment` node with `Environment` resource for scene-wide effects
-- Configure per-environment: glow, tone mapping, SSAO, SSR, fog, adjustments
+- Configure per-environment: glow, tonemap, depth and height fog, DOF, adjustments (Mobile renderer)
 - Use multiple environments for different areas (indoor vs outdoor)
 
 ### Compositor Effects (Godot 4.3+)

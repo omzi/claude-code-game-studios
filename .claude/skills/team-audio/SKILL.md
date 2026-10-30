@@ -154,9 +154,9 @@ is listed among the open questions in the summary.
 
 ### Step 3: Technical Implementation (parallel)
 Spawn the `technical-artist` agent to:
-- Design the audio middleware integration (Wwise/FMOD/native)
+- Design the integration on Godot built-in audio (AudioStreamPlayer, AudioStreamPlayer3D, AudioStreamSynchronized, AudioStreamInteractive, buses) driven by the BeatClock in addons/core
 - Define audio bus structure and routing
-- Specify memory budgets for audio assets per platform
+- Propose audio memory budget options for Omzi to choose
 - Plan streaming vs preloaded asset strategy
 - Design any audio-reactive visual effects
 
