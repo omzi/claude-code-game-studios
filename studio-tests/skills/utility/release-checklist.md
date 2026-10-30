@@ -21,7 +21,8 @@ The checklist has Codebase Health, Build Verification, Quality Gates and Content
 Complete sections, device blocks chosen by the argument (default `all`), then a
 certification block chosen **only** by `platform.cert_tier`: `none` → a single
 "Certification: omitted — cert_tier is 'none' …" line; `itch` → itch.io rows;
-`steam` → Steamworks rows; `console` → TRC/XR/Lotcheck rows. Unset `cert_tier`
+`steam` → Steamworks rows; `console` → TRC/XR/Lotcheck rows; `mobile` → the Mobile
+device block with its iOS and Android rows. Unset `cert_tier`
 means asking which platforms are in scope, or
 `### Certification: NOT ASSESSED — cert tier unknown`; unset is never treated as
 `none`. It ends with Store / Distribution, Launch Readiness and
@@ -272,7 +273,7 @@ Fixture defaults.
 
 ## Protocol Compliance
 
-- [ ] Resolves `platform.cert_tier` and branches only on `none | itch | steam | console`
+- [ ] Resolves `platform.cert_tier` and branches only on `none | itch | steam | console | mobile`
 - [ ] Treats unset `cert_tier` as a question (or NOT ASSESSED), never as `none`
 - [ ] Chooses device blocks from the argument and certification from `cert_tier`
 - [ ] States a denominator with every scan count, or reports NOT ASSESSED
@@ -287,8 +288,8 @@ Fixture defaults.
 
 - `project.stage` scoping (items for unreached phases marked out of scope) and
   `modes.rigor: minimal` trimming are not separately tested.
-- The mobile device block (App Store / Play Store rows kept in the device block
-  by design) is not tested by a dedicated case.
+- The mobile device block and the `mobile` cert tier (iOS and Android store rows)
+  are not tested by a dedicated case.
 - How READY vs NOT READY is decided depends on the unchecked items and the
   user's inputs; a live run is needed to verify the rationale text.
 - A resolved code root that is absent or empty reads

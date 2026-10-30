@@ -74,8 +74,9 @@ Open-ended questions and file-write confirmations stay in plain conversation.
    visual hierarchy. This is the visual source of truth.
 2. **Style Guide Enforcement**: Review all visual assets and UI mockups against
    the art bible. Flag inconsistencies with specific corrective guidance.
-3. **Asset Specifications**: Define specs for each asset category: resolution,
-   format, naming convention, color profile, polygon budget, texture budget.
+3. **Asset Specifications**: Define specs for each asset category: format,
+   naming convention, color profile. For resolution, polygon and texture budgets,
+   propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers.
 4. **UI/UX Visual Design**: Direct the visual design of all user interfaces,
    ensuring readability, accessibility, and aesthetic consistency.
 5. **Color and Lighting Direction**: Define the color language of the game --

@@ -29,11 +29,11 @@ trains the reader to skip the list, which defeats the gate:
 - **`platform.cert_tier`** — emit certification items **only** for the tier the
   project targets. If it is **unset**, **ask which platforms are in scope**
   rather than emitting all of them — an unset value is a question, not a licence
-  to emit every certification track. The answer, mapped onto the four values
+  to emit every certification track. The answer, mapped onto the five values
   below, is the tier for this run. If it cannot be determined, mark the section
   **`NOT ASSESSED — cert tier unknown`**. **Unset is not `none`:** `none` is a
   decision, unset is a missing one, and they must not produce the same output.
-  Branch on the **four values this key takes** — `none | itch | steam | console` —
+  Branch on the **five values this key takes** — `none | itch | steam | console | mobile` —
   and not on platform names. The full requirement table is the `## platform.cert_tier`
   section of `.claude/docs/effects-map.md` — read **only that section** (Grep its
   heading, then a bounded Read); the file as a whole is not a runtime input.
@@ -45,11 +45,13 @@ trains the reader to skip the list, which defeats the gate:
     requirements, common content rules. **No console certification items.**
   - `console` — full platform certification (TRC / XR / Lotcheck), save-data
     rules, controller-mapping rules, age-rating boards. The heaviest tier.
+  - `mobile` — Google Play Console and App Store Connect submission, adaptive
+    icons, store screenshots. **No console and no Steamworks items.**
 
   > **Branch on the `cert_tier` values above, not on platform names.** A test on
   > target platforms treats an `itch` project and a `steam` project identically,
-  > conflates `none` with unset, and keys on `mobile`, which is not a `cert_tier`
-  > value at all. Use the vocabulary the config defines.
+  > conflates `none` with unset, and keys on platform names rather than the
+  > `cert_tier` value. Use the vocabulary the config defines.
 
 If an item cannot be scoped because the config is absent, mark it
 **`NOT ASSESSED — platform/stage unknown`**. Do not silently include it: a
@@ -216,6 +218,21 @@ do not fall back to emitting all of them.
 - [ ] Controller-mapping rules met, platform-correct button prompts
 - [ ] Suspend/resume verified
 - [ ] Age ratings obtained (ESRB, PEGI, regional)
+
+**At `mobile`:**
+No item here is ever submitted by Claude.
+Store submission requires Omzi's explicit go-ahead.
+- [ ] Google Play Console: target API level meets Google Play's current requirement
+- [ ] Google Play Console: Data safety form complete
+- [ ] Google Play Console: IARC content rating questionnaire complete
+- [ ] Google Play Console: AAB signed with the upload key (Play App Signing enrolled)
+- [ ] Google Play Console: closed testing track run with real testers
+- [ ] App Store Connect: privacy nutrition labels complete
+- [ ] App Store Connect: privacy manifest (PrivacyInfo.xcprivacy) complete, including third-party SDKs
+- [ ] App Store Connect: TestFlight build tested
+- [ ] App Store Connect: export compliance answered
+- [ ] Adaptive icons (Android) and the full iOS icon set present
+- [ ] Store screenshots captured for every required device size
 
 **Every tier**, because these are not certification-gated:
 - [ ] Accessibility: minimum standards met (remapping, text scaling, colorblind)

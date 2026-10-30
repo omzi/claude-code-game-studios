@@ -91,8 +91,8 @@ Example filled section:
 ### Remaining Sections
 - **Performance Budgets**: Use `AskUserQuestion`:
   - Prompt: "Should I set default performance budgets now, or leave them for later?"
-  - Options: `[A] Set defaults now (60fps, 16.6ms frame budget, engine-appropriate draw call limit)` / `[B] Leave as [TO BE CONFIGURED] — I'll set these when I know my target hardware`
-  - If [A]: populate with the suggested defaults. If [B]: leave as placeholder.
+  - Options: `[A] Propose budget options now (frame rate, frame time, draw calls) with their tradeoffs; I choose` / `[B] Leave as [TO BE CONFIGURED] — I'll set these when I know my target hardware`
+  - If [A]: propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers. If [B]: leave as placeholder.
 - **Testing**: Suggest the engine-appropriate framework — **gdUnit4** for Godot,
   NUnit for Unity, Automation Spec for Unreal — and ask before adding.
   > **Must match `commands.test` in Section 5.5.1, which writes gdUnit4's own

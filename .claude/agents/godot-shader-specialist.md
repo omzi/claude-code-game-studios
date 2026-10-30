@@ -163,7 +163,7 @@ void fragment() {
 - Set `lifetime` to minimum needed — don't keep particles alive longer than visible
 - Use `visibility_aabb` to cull off-screen particles
 - LOD: reduce particle count at distance
-- Target: all particle systems combined < 2ms GPU time
+- Particle GPU budget (all systems combined): propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers
 
 ## Post-Processing
 
@@ -200,14 +200,8 @@ void fragment() {
 - Use LOD materials: simplified shaders for distant objects
 
 ### Render Budgets
-- Total frame GPU budget: 16.6ms (60 FPS) or 8.3ms (120 FPS)
-- Allocation targets:
-  - Geometry rendering: 4-6ms
-  - Lighting: 2-3ms
-  - Shadows: 2-3ms
-  - Particles/VFX: 1-2ms
-  - Post-processing: 1-2ms
-  - UI: < 1ms
+- Total frame GPU budget and its allocation (geometry, lighting, shadows,
+  particles and VFX, post-processing, UI): propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers
 
 ## Common Shader Anti-Patterns
 - Texture reads in a loop (exponential cost)

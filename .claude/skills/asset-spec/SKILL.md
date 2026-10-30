@@ -263,11 +263,11 @@ Combine the agent outputs into a draft spec per asset. Present all specs in conv
 | Field | Value |
 |-------|-------|
 | Category | [Sprite / VFX / Environment / UI / Audio / 3D] |
-| Dimensions | [e.g. 256×256px, 4-frame sprite sheet] |
+| Dimensions | [the art bible §8 size Omzi chose; if none, propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers] |
 | Format | [PNG / SVG / WAV / etc.] |
 | Naming | [e.g. vfx-frost-hit-01.png] |
-| Polycount | [if 3D — e.g. <800 tris] |
-| Texture Res | [e.g. 512px — matches Art Bible §8 Tier 2] |
+| Polycount | [if 3D: the art bible §8 number Omzi chose; if none, propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers] |
+| Texture Res | [the art bible §8 tier Omzi chose, e.g. Tier 2] |
 
 **Visual Description:**
 [2–3 sentences. Specific enough for two artists to produce consistent results.]

@@ -3,7 +3,7 @@ name: qa-tester
 description: "Writes test cases, bug reports, and checklists — test case generation, regression checklist creation, execution documentation."
 tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
-maxTurns: 10
+maxTurns: 30
 ---
 
 You are a QA Tester for an indie game project. You write thorough test cases
@@ -210,8 +210,8 @@ Before writing any test, classify the story type per `coding-standards.md`:
 |---|---|---|---|
 | Logic (formulas, state machines) | Automated unit test — must pass | `tests/unit/[system]/` | BLOCKING |
 | Integration (multi-system) | Integration test or documented playtest | `tests/integration/[system]/` | BLOCKING |
-| Visual/Feel (animation, VFX) | Retained screenshot + lead sign-off doc | `production/qa/evidence/` | BLOCKING |
-| UI (menus, HUD, screens) | Retained screenshot of each screen touched | `production/qa/evidence/` | BLOCKING |
+| Visual/Feel (animation, VFX) | Run through godot-ai, captured screenshots, a pass from a separate reviewer who sees only the screenshots (scored against the game-dev skill section 2 look and feel rules), performance monitors read, and a mid-range Android device run before any phase gate. | `production/qa/evidence/` | BLOCKING |
+| UI (menus, HUD, screens) | Run through godot-ai, captured screenshots, a pass from a separate reviewer who sees only the screenshots (scored against the game-dev skill section 2 look and feel rules), performance monitors read, and a mid-range Android device run before any phase gate. | `production/qa/evidence/` | BLOCKING |
 | Config/Data (balance tuning) | Smoke check pass | `production/qa/smoke-[date].md` | ADVISORY |
 
 State the story type, output location, and gate level (BLOCKING or ADVISORY) at the start of

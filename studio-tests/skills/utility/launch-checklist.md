@@ -8,7 +8,7 @@ project. It is handed the resolved `rigor`, `project.stage`, `platform.cert_tier
 and `automation`, and scopes by them: out-of-reach phases are declared out of
 scope, `rigor: minimal` drops process-weight items, and the Platform
 Certification section is emitted **only** for the `cert_tier` value
-(`none | itch | steam | console`). An unset `cert_tier` is a question, not a
+(`none | itch | steam | console | mobile`). An unset `cert_tier` is a question, not a
 licence to emit every track; if it cannot be determined the section is marked
 `NOT ASSESSED — cert tier unknown`.
 
@@ -255,7 +255,7 @@ Fixture defaults.
 ## Protocol Compliance
 
 - [ ] Scopes the checklist by `project.stage`, `modes.rigor` and `platform.cert_tier`
-- [ ] Branches certification on the four `cert_tier` values, not on platform names
+- [ ] Branches certification on the five `cert_tier` values (`none | itch | steam | console | mobile`), not on platform names
 - [ ] Reports every scan with a denominator or `NOT ASSESSED — [reason]`
 - [ ] Writes unassessable items as `- [?]` with the legend
 - [ ] Asks "May I write" before saving (skipped entirely in dry-run), and creates no file or directory before the answer

@@ -27,6 +27,7 @@
 - [ ] All key screen UX specs have passed `/ux-review` (verdict APPROVED or NEEDS REVISION accepted)
 
 **Quality Checks:**
+- [ ] Device run: the build has been run on a real mid-range Android phone and the result recorded under `production/qa/evidence/`
 - [ ] **Core loop fun is validated** — playtest data confirms the central mechanic is enjoyable, not just functional. Explicitly check the Vertical Slice playtest report.
 - [ ] UX specs cover all UI Requirements sections from MVP-tier GDDs
 - [ ] Interaction pattern library documents patterns used in key screens
@@ -68,8 +69,8 @@ only thing that adds one.
 
 - **`full`** — sprint plan + complete (9-section) art bible + epics + UX specs + control manifest all required; **Vertical Slice keeps its Section 2 status** (see note) — its playtest is recommended, 1 documented session with 3+ better
 - **`standard`** — epics + sprint plan required; art bible complete + UX specs + control manifest → recommended; **Vertical Slice keeps its Section 2 status**
-- **`minimal`** — the minimal floor only: a filled **`design/game-brief.md`** with its build order, and **stories** under `production/epics/` (`workflow-modes.md` — the brief's build order is the plan, so there is **no sprint plan**); everything else **drops** — sprint plan, epics, playtests, art bible, entity inventory, MVP GDDs, the master architecture document, both ADR items, control manifest, the UX items (key screen specs, HUD document, `/ux-review`), and the Vertical Slice items (the slice, its playtest, and the Vertical Slice Validation block) — the two current-build checks below replace them
-  **Quality checks at `minimal`:** every check that reads a dropped artifact drops with it — the sprint-plan, architecture, both ADR, GDD-coherence, UX and accessibility checks, and the Player Fantasy check (no GDD holds one). Two still apply, to the current build instead of a slice: **the core loop is fun** (ask the user, or read a playtest note if one exists) and **it runs end to end** — one complete start → challenge → resolution cycle. A "no" to either is FAIL, as a NO on a built slice is at the other tiers; a "not yet" to the fun question means nobody has played the build — NOT ASSESSED.
+- **`minimal`** — the minimal floor only: a filled **`design/game-brief.md`** with its build order, and **stories** under `production/epics/` (`workflow-modes.md` — the brief's build order is the plan, so there is **no sprint plan**); everything else **drops** — sprint plan, epics, playtests, art bible, entity inventory, MVP GDDs, the master architecture document, both ADR items, control manifest, the UX items (key screen specs, `/ux-review`), and the Vertical Slice items (the slice, its playtest, and the Vertical Slice Validation block) — the two current-build checks below replace them
+  **Quality checks at `minimal`:** every check that reads a dropped artifact drops with it — the sprint-plan, architecture, both ADR, GDD-coherence, UX and accessibility checks, and the Player Fantasy check (no GDD holds one). Two still apply, to the current build instead of a slice: **the core loop is fun** (ask the user, or read a playtest note if one exists) and **it runs end to end** — one complete start → challenge → resolution cycle. A "no" to either current-build check is FAIL, as a NO on a built slice is at the other tiers; a "not yet" to the fun question means nobody has played the build — NOT ASSESSED. The **device run** quality check also still applies: with no device-run record under `production/qa/evidence/`, the verdict is NOT ASSESSED.
 
 > **The Vertical Slice keeps its Section 2 status at `full` and `standard`.** The
 > Pre-Production → Production "prototype/Vertical Slice" floor is NOT upgraded to

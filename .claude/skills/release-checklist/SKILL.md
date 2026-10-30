@@ -31,7 +31,7 @@ trains the reader to skip the list, which defeats the gate:
   to emit every certification track. If it cannot be determined, mark the section
   **`NOT ASSESSED — cert tier unknown`**. **Unset is not `none`:** `none` is a
   decision, unset is a missing one, and they must not produce the same output.
-  Branch on the **four values this key takes** — `none | itch | steam | console` —
+  Branch on the **five values this key takes** — `none | itch | steam | console | mobile` —
   and not on platform names. The full requirement table is the `## platform.cert_tier`
   section of `.claude/docs/effects-map.md` — read **only that section** (Grep its
   heading, then a bounded Read); the file as a whole is not a runtime input.
@@ -43,11 +43,13 @@ trains the reader to skip the list, which defeats the gate:
     requirements, common content rules. **No console certification items.**
   - `console` — full platform certification (TRC / XR / Lotcheck), save-data
     rules, controller-mapping rules, age-rating boards. The heaviest tier.
+  - `mobile` — Google Play and App Store submission: the Mobile device block's
+    store rows. **No console and no Steamworks items.**
 
   > **Branch on the `cert_tier` values above, not on platform names.** A test on
   > target platforms treats an `itch` project and a `steam` project identically,
-  > conflates `none` with unset, and keys on `mobile`, which is not a `cert_tier`
-  > value at all. Use the vocabulary the config defines.
+  > conflates `none` with unset, and keys on platform names rather than the
+  > `cert_tier` value. Use the vocabulary the config defines.
 
 If an item cannot be scoped because the config is absent, mark it
 **`NOT ASSESSED — platform/stage unknown`**. Do not silently include it: a
@@ -66,9 +68,8 @@ Read the argument for the target platform (`pc`, `console`, `mobile`, or `all`).
 track.** Certification is decided by `platform.cert_tier`, resolved in the resolved-config block at the top of this skill —
 see the `platform.cert_tier` rule above. The two axes are different lists that
 happen to share one word: `pc`/`console`/`mobile` are hardware shapes, while
-`none|itch|steam|console` are certification regimes. They agree on `console` and
-nowhere else — `itch` and `none` have no device block at all, and `mobile` is not
-a `cert_tier` value. So emitting a device block says nothing about which
+`none|itch|steam|console|mobile` are certification regimes. They share `console`
+and `mobile` — `itch` and `none` have no device block at all. So emitting a device block says nothing about which
 certification block to emit, and `all` is **not** a licence to emit every
 certification track.
 
@@ -160,7 +161,7 @@ subsection, and repeating them here would hand an `itch` project Steamworks rows
 - [ ] Minimum and recommended specs verified and documented
 - [ ] Keyboard+mouse controls fully functional
 - [ ] Controller support tested (Xbox, PlayStation, generic)
-- [ ] Resolution scaling tested (1080p, 1440p, 4K, ultrawide)
+- [ ] Resolution scaling tested (1080p, 1440p, 4K, ultrawide) (drop for a mobile-only release)
 - [ ] Windowed, borderless, and fullscreen modes working
 - [ ] Graphics settings save and load correctly
 ```
@@ -188,13 +189,17 @@ subsection, and repeating them here would hand an `itch` project Steamworks rows
 - [ ] Push notification permissions handled correctly
 - [ ] In-app purchase flow tested (if applicable)
 - [ ] App size within store limits
+- [ ] iOS: signing certificate and provisioning profile valid for the release build
+- [ ] iOS: TestFlight build installed and tested on a real device
+- [ ] iOS: privacy manifest (PrivacyInfo.xcprivacy) complete, including third-party SDKs
+- [ ] Android: AAB signed with the upload key (Play App Signing enrolled)
+- [ ] Android: internal testing track build installed and tested on a real device
+- [ ] Android: Data safety form complete
 ```
 
-> **Mobile storefront rows stay here on purpose.** `platform.cert_tier` models
-> `none|itch|steam|console` and has no mobile regime, so App Store / Play Store
-> compliance cannot be gated on it. Leaving these in the device block is a
-> deliberate choice, not an oversight — do not "fix" it by inventing a `mobile`
-> tier, which is the exact wrong vocabulary the `cert_tier` rule warns against.
+> **Mobile storefront rows stay here on purpose.** They describe the device
+> build, so they follow the `mobile` argument. The `mobile` value of
+> `platform.cert_tier` covers store submission (see the **At `mobile`** certification block below).
 
 **Certification — emit ONLY the block matching `platform.cert_tier`** (resolved in
 the resolved-config block at the top of this skill). Do not emit this subsection's other blocks, and do not fall back to
@@ -238,6 +243,10 @@ Certification: omitted — cert_tier is 'none' (internal build, alpha or jam rel
 - [ ] Age ratings obtained (ESRB, PEGI, regional)
 ```
 
+**At `mobile`:** emit the Mobile device block above (even when the argument did
+not select it) and no other certification block. No item is ever submitted by
+Claude: store submission requires Omzi's explicit go-ahead.
+
 If `cert_tier` is **unset**, ask which platforms are in scope rather than
 emitting every track; if it cannot be determined, emit
 `### Certification: NOT ASSESSED — cert tier unknown` and say why. **Unset is not
@@ -251,7 +260,7 @@ emitting every track; if it cannot be determined, emit
 > forbids.
 >
 > **`console` means two different things in this file.** It is a device-block
-> argument value *and* a `cert_tier` value, colliding on one word out of four. A
+> argument value *and* a `cert_tier` value (as is `mobile`). A
 > `**For \`console\`:**` heading is argument-gating, not tier-gating — do not read
 > it as evidence that certification is already scoped by tier.
 
@@ -278,7 +287,7 @@ emitting every track; if it cannot be determined, emit
 - [ ] Analytics / telemetry verified and receiving data
 - [ ] Crash reporting configured and dashboard accessible
 - [ ] Day-one patch prepared and tested (if needed)
-- [ ] On-call team schedule set for first 72 hours
+- [ ] On-call team schedule set for first 72 hours (drop for a mobile-only release)
 - [ ] Community launch announcements drafted
 - [ ] Press/influencer keys prepared for distribution
 - [ ] Support team briefed on known issues and FAQ

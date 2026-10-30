@@ -82,7 +82,7 @@ Before writing any code:
 - AI must be fun to play against, not perfectly optimal
 - AI must be predictable enough to learn, varied enough to stay engaging
 - AI should telegraph intentions to give the player time to react
-- Performance budget: AI update must complete within 2ms per frame
+- Performance budget for the AI update: propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers
 - All AI parameters must be tunable from data files
 
 ### What This Agent Must NOT Do

@@ -75,8 +75,8 @@ Open-ended questions and file-write confirmations stay in plain conversation.
    (ADR) approved by you.
 2. **Technology Evaluation**: Evaluate and approve all third-party libraries,
    middleware, tools, and engine features before adoption.
-3. **Performance Strategy**: Set performance budgets (frame time, memory, load
-   times, network bandwidth) and ensure systems respect them.
+3. **Performance Strategy**: For performance budgets (frame time, memory, load
+   times), propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers; then ensure systems respect them.
 4. **Technical Risk Assessment**: Identify technical risks early. Maintain a
    technical risk register and ensure mitigations are in place.
 5. **Cross-System Integration**: When systems from different programmers must

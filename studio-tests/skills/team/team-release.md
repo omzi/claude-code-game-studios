@@ -76,7 +76,7 @@ Fixture defaults.
 4. Phase 3 (parallel): Issues Agent calls simultaneously for `qa-lead` (regression suite, critical path sign-off, `production/releases/qa-gate-v1.0.0.md`) and `devops-engineer` (build artifacts, CI verification, `production/releases/build-v1.0.0.md`); security-engineer is NOT spawned (`platform.online: false`, no player data) and network-programmer is NOT spawned (`platform.multiplayer: false`), and the Phase 3 output names each skip with its reason
 5. Phase 4: localization-lead verifies all strings are translated (`production/releases/localization-signoff-v1.0.0.md`); performance-analyst benchmarks the release build (`performance-signoff-v1.0.0.md`); `analytics-engineer` verifies telemetry fires correctly on the release build (`analytics-signoff-v1.0.0.md`) — each agent writes its own file
 6. Phase 5: Spawns `producer` via Agent; collects sign-offs from qa-lead, release-manager, devops-engineer and technical-director; no open blocking issues; producer declares GO (`production/releases/go-no-go-v1.0.0.md`)
-7. Phase 6: `AskUserQuestion` "Producer verdict is GO. Execute Phase 6 — tag, deploy to staging, deploy to production?" with [A] Yes, deploy / [B] Staging only — hold production / [C] Stop here; user selects [A]
+7. Phase 6: four separate `AskUserQuestion` calls, each immediately before its step: tag, deploy to staging, deploy to production, publish; user selects [A] at each
 8. Phase 6: release-manager + devops-engineer tag the release, finalize the changelog via `/changelog`, deploy to staging, then production; in parallel release-manager finalizes patch notes via `/patch-notes v1.0.0` (`docs/patch-notes/v1.0.0.md`), and `community-manager` writes the launch announcement from them (`production/releases/announcement-v1.0.0.md`)
 9. Phase 7: release-manager generates the release report (`production/releases/release-report-v1.0.0.md`); producer updates milestone tracking; qa-lead monitors for regressions; community-manager publishes; analytics-engineer confirms live dashboards healthy
 10. Next steps: monitor dashboards for 48 hours; `/retrospective` if significant issues occurred
@@ -89,7 +89,7 @@ Fixture defaults.
 - [ ] security-engineer is NOT spawned when `platform.online` and `platform.multiplayer` are false and there is no player data, and the Phase 3 output says so by name (e.g. `security-engineer: not spawned — platform.online: false, platform.multiplayer: false, no player data`) — the skip is never silent
 - [ ] Each agent is told its own named output file — parallel Phase 3 and Phase 4 agents never share one — and the orchestrator confirms the file exists before treating the phase as done
 - [ ] Phase 5 producer collects sign-offs from qa-lead, release-manager, devops-engineer and technical-director before declaring GO
-- [ ] Phase 6 deployment only begins after the user picks [A] in the Phase 6 `AskUserQuestion`
+- [ ] Phase 6 asks separately for tag, staging, production and publishing; each step runs only after the user picks [A] in its own `AskUserQuestion`, and an approval never carries over to the next step
 - [ ] `/changelog` is invoked by release-manager in Phase 6 (not written directly)
 - [ ] `/patch-notes v1.0.0` is invoked by release-manager in Phase 6, and community-manager writes the announcement from its output — community-manager is never asked to run `/patch-notes`
 - [ ] Phase 7 monitoring plan includes a 48-hour post-release monitoring commitment
@@ -283,6 +283,6 @@ In both variants `project.stage` is `Release`.
 - Phase 7 post-release actions (release report, milestone tracking, community publishing, dashboard monitoring) are validated implicitly by Case 1. No separate edge case is required as Phase 7 is non-gated and does not have a blocking failure mode.
 - The "devops-engineer build fails" path is not separately tested — it would surface as a BLOCKED result in Phase 3 and follow the standard error recovery protocol (surface → assess → AskUserQuestion options).
 - The parallel Phase 4 path (running alongside Phase 3 "if resources available") is left to the skill's judgment; Case 4 tests Phase 4 as a sequential phase.
-- The `[B] Staging only — hold production` Phase 6 option is not separately tested.
+- Declining at the production ask (`[B] Hold production`) after staging is not separately tested.
 - A release that needs stabilising (a freeze or platform certification, so a `release/*` branch is cut) is not given its own case; the rule is asserted in Protocol Compliance.
 - The "override NO-GO with documented rationale" path is checked for its justification step in Cases 2 and 4 but not followed through a full deployment.

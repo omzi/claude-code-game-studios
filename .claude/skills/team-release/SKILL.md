@@ -62,7 +62,7 @@ below), and the agents that work at them are team members, not director gates.
 - **`individual`** (default): `release-manager` only. Other agents consulted via the release-manager, not spawned separately.
 - **`small`**: + `producer` + `devops-engineer` + `qa-lead` + `community-manager`.
 - **`studio`**: + `security-engineer` + `analytics-engineer` + `localization-lead` + `performance-analyst`, and `network-programmer` when the game is multiplayer (the full pipeline as documented).
-A non-core agent needed at `individual` routes through the nearest active core agent with an informational note. **"Phase gate" means any phase that ends in an `AskUserQuestion` decision point this pipeline itself lists** — a transition under Decision Points above, the stage check, or the Phase 6 deploy question — **whatever the `automation` mode.** `guided` and `autonomous` change how a gate is passed (it auto-advances, or is recorded with `log_decision`), not whether it is one, so bounded-exception condition (3) below holds at it in every mode. An agent restricted to "phase gates only" is spawned at those points and no others. This active-set scoping applies throughout the pipeline below: any phase that names an agent outside the active set routes through the nearest core agent rather than spawning it.
+A non-core agent needed at `individual` routes through the nearest active core agent with an informational note. **"Phase gate" means any phase that ends in an `AskUserQuestion` decision point this pipeline itself lists** — a transition under Decision Points above, the stage check, or the four Phase 6 asks — **whatever the `automation` mode.** `guided` and `autonomous` change how a gate is passed (it auto-advances, or is recorded with `log_decision`), not whether it is one, so bounded-exception condition (3) below holds at it in every mode. An agent restricted to "phase gates only" is spawned at those points and no others. This active-set scoping applies throughout the pipeline below: any phase that names an agent outside the active set routes through the nearest core agent rather than spawning it.
 
 **Announce the active set before Phase 1 — never let the collapse be silent.**
 Before spawning anything, state in one line which agents this run will actually
@@ -223,16 +223,23 @@ After the user selects "Override NO-GO with documented rationale":
 `modes.automation` — including `autonomous` mode.** Production deployment is
 irreversible and high-stakes; it is NOT covered by the configurable
 `automation_always_ask` categories, so this skill guards it unconditionally.
-Before tagging or deploying, use `AskUserQuestion`:
-- Prompt: "Producer verdict is GO. Execute Phase 6 — tag, deploy to staging,
-  deploy to production?"
-- Options: `[A] Yes, deploy` / `[B] Staging only — hold production` / `[C] Stop here`
+Each step below is a separate ask, with `AskUserQuestion`, immediately before
+that step runs. An approval covers only the step it names; a "yes" to one is
+never read as a "yes" to the next. Stop at the first step the user declines.
+1. **Tag** - Prompt: "Producer verdict is GO. Tag the release [version] in version
+   control?" Options: `[A] Yes, tag` / `[B] Stop here`
+2. **Staging** - Prompt: "Deploy [version] to staging for the final smoke test?"
+   Options: `[A] Yes, deploy to staging` / `[B] Stop here`
+3. **Production** - Prompt: "Staging is done. Deploy [version] to production?"
+   Options: `[A] Yes, deploy to production` / `[B] Hold production`
+4. **Publishing** - Prompt: "Publish the release communication and store changes
+   for [version]?" Options: `[A] Yes, publish` / `[B] Keep as drafts`
 
-Only after explicit approval, delegate to **release-manager** + **devops-engineer**:
-- Tag the release in version control
+Only after the matching approval, delegate to **release-manager** + **devops-engineer**:
+- Tag the release in version control (after ask 1)
 - Finalize the changelog drafted in Polish (`/changelog`), adding what changed since the gate
-- Deploy to staging for final smoke test
-- Deploy to production (only if the user approved production above)
+- Deploy to staging for final smoke test (after ask 2)
+- Deploy to production (after ask 3)
 - Human team action: Monitor dashboards and error rates for 48 hours post-release. Schedule a follow-up retrospective using `/retrospective` at the 48-hour mark.
 
 In parallel with deployment, delegate to **release-manager**:
@@ -241,13 +248,13 @@ In parallel with deployment, delegate to **release-manager**:
 Then hand those patch notes to **community-manager**:
 - Prepare launch announcement (store page updates, social media, community post)
 - Draft known issues post if any S3+ issues shipped
-- Output: all player-facing release communication, ready to publish on deploy confirmation
+- Output: all player-facing release communication as drafts, published only after ask 4
 
 ### Phase 7: Post-Release
 - **release-manager**: Generate release report (what shipped, what was deferred, metrics)
 - **producer**: Update milestone tracking, communicate to stakeholders
 - **qa-lead**: Monitor incoming bug reports for regressions
-- **community-manager**: Publish all player-facing communication, monitor community sentiment
+- **community-manager**: Publish all player-facing communication (only if ask 4 was approved; otherwise leave it as drafts), monitor community sentiment
 - **analytics-engineer**: Confirm live dashboards are healthy; alert if any critical events are missing
 - Keep the 48-hour monitoring window from Phase 6: bugs, dashboards and community sentiment are watched for 48 hours after release (release-manager's own watch runs to its 72h report)
 - Schedule post-release retrospective if issues occurred

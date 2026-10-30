@@ -48,7 +48,7 @@ No gate IDs assigned.
 **Expected behavior:**
 - Treats the heap as its own work: "Implement and optimize pathfinding" is its Key Responsibility, and the priority queue is part of the pathfinding code — it does not hand the heap to engine-programmer
 - Proposes the heap (interface, expected operations and their cost) and asks before writing it
-- Keeps the pathfinding update inside its 2ms-per-frame AI budget
+- Keeps the pathfinding update inside the AI budget Omzi chose, or proposes budget options if none is set
 - Involves `engine-programmer` only if the fix needs a change to a core engine system (its "must not" line), not for the heap itself
 
 ### Case 5: Context pass — implements from the level layout and encounter spec

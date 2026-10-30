@@ -224,6 +224,7 @@ whole at every density.
 - Logic and Integration stories have passing tests in the test root
 - Visual/Feel and UI stories have retained screenshots in `production/qa/evidence/`
   (a lead sign-off too for Visual/Feel)
+- Separate visual review passed; device run recorded under production/qa/evidence/
 ```
 
 At `minimal`, the GDD line names `design/game-brief.md`, the Governing ADRs and GDD

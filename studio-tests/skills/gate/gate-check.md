@@ -341,6 +341,7 @@ no override turns a FAIL into a stage change — and names the blockers and
 - `design/game-brief.md` is filled, with a Build order of three MVP features
 - Three story files under `production/epics/core/`, one per feature
 - No `prototypes/`, no Vertical Slice, no sprint plan, no playtest report
+- A device-run record for the current build exists under `production/qa/evidence/`
 
 **Input:** `/gate-check production`; the user answers yes to both current-build
 questions (the core loop is fun; one start → challenge → resolution cycle runs
@@ -362,7 +363,7 @@ loop is fun" → NOT ASSESSED (nobody has played the build).
 
 **Assertions:**
 - [ ] No Vertical Slice item is listed as missing or turned into CONCERNS at `minimal`
-- [ ] The two current-build checks are asked and carry the verdict: both yes → PASS; a "no" → FAIL; "not yet" on the fun question → NOT ASSESSED
+- [ ] The two current-build checks and the device-run check carry the verdict: both yes with a device-run record → PASS; a "no" → FAIL; "not yet" on the fun question → NOT ASSESSED; no device-run record → NOT ASSESSED
 - [ ] The floor is read from `artifact-check.sh --path minimal`, not by opening files to see what exists
 
 ---

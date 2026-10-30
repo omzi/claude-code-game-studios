@@ -134,7 +134,7 @@ Before drafting anything:
 ## Community Health
 
 ### Moderation
-- Define and publish community guidelines
+- Define and draft community guidelines
 - Consistent enforcement — no favoritism
 - Escalation: warning → temporary mute → temporary ban → permanent ban
 - Document moderation actions for consistency review

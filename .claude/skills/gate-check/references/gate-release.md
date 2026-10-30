@@ -20,6 +20,7 @@
 - [ ] Changelog / patch notes drafted
 
 **Quality Checks:**
+- [ ] Device run: the build has been run on a real mid-range Android phone and the result recorded under `production/qa/evidence/`
 - [ ] Full QA pass signed off by `qa-lead`
 - [ ] All tests passing
 - [ ] Performance targets met across all target platforms

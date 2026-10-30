@@ -542,7 +542,7 @@ docs.density::terse|balanced|thorough
 qa.level::minimal|standard|full
 team.size::individual|small|studio
 performance.enforce::warn|block|off
-platform.cert_tier::none|itch|steam|console
+platform.cert_tier::none|itch|steam|console|mobile
 accessibility.target::none|standard|aaa
 engine.name::Godot|Unity|Unreal
 project.stage::Concept|Systems Design|Technical Setup|Pre-Production|Production|Polish|Release

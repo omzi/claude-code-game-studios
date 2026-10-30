@@ -1426,12 +1426,13 @@ and `/gate-check` decide online scope from the documents in front of them.
 > ### WIRED — this setting is live
 >
 > `/launch-checklist` and `/release-checklist` both resolve it and branch on its
-> four values — `none` emits no certification section, `itch` and `steam` their
-> storefront's requirements, `console` full platform certification — and ask which
+> five values — `none` emits no certification section, `itch` and `steam` their
+> storefront's requirements, `console` full platform certification, `mobile`
+> Google Play and App Store submission — and ask which
 > platforms are in scope when it is unset.
 
 **Controls:** Certification target — scopes what `/launch-checklist` asks for
-**Values:** `none` | `itch` | `steam` | `console`
+**Values:** `none` | `itch` | `steam` | `console` | `mobile`
 **Default:** *none* — unset stays unset, so the skills ask
 **Set by:** `/settings` — nothing else writes it, so it stays unset (and the skills ask) until you set it
 **Read by:** `/launch-checklist`, `/release-checklist`
@@ -1450,6 +1451,7 @@ must tell them apart)
 | `itch` | itch.io upload requirements (build size, page setup, age tags) | Indie web/desktop releases |
 | `steam` | Steamworks integration, store page, achievements, depot build, system requirements, common content rules | Commercial PC releases |
 | `console` | Platform certification (PlayStation/Xbox/Switch) — heavy compliance: TRC/XR/Lotcheck, save data rules, controller mapping rules, age rating boards | Console releases |
+| `mobile` | Google Play Console (target API level, Data safety, IARC rating, AAB signing, closed testing) and App Store Connect (privacy nutrition labels, privacy manifest, TestFlight, export compliance), adaptive icons, store screenshots. Never submitted by Claude: store submission requires Omzi's explicit go-ahead | iOS and Android releases |
 
 ---
 
@@ -2453,7 +2455,7 @@ platform:
   primary_input: "Keyboard/Mouse"
   gamepad_support: "Full"    # Full | Partial | None
   touch_support: "None"      # Full | Partial | None
-  cert_tier: none            # none | itch | steam | console
+  cert_tier: none            # none | itch | steam | console | mobile
 
 engine:
   name: "Godot"              # Godot | Unity | Unreal — set by /setup-engine

@@ -14,6 +14,11 @@
       "Bash(python -m pytest *)",
       "Bash(py -m pytest *)"
     ],
+    "ask": [
+      "Bash(git commit*)", "Bash(git * commit*)",
+      "Bash(git push*)", "Bash(git * push*)",
+      "PowerShell(git commit*)", "PowerShell(git push*)"
+    ],
     "deny": [
       "Bash(rm -rf *)",
       "Bash(rm -fr *)",

@@ -60,8 +60,8 @@ Before drafting anything:
 
 1. **Performance Profiling**: Run and analyze performance profiles for CPU,
    GPU, memory, and I/O. Identify the top bottlenecks in each category.
-2. **Budget Tracking**: Track performance against budgets set by the technical
-   director. Report violations with trend data.
+2. **Budget Tracking**: Track performance against the chosen budgets (where none
+   is set, propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers). Report violations with trend data.
 3. **Optimization Recommendations**: For each bottleneck, provide specific,
    prioritized optimization recommendations with estimated impact and
    implementation cost.

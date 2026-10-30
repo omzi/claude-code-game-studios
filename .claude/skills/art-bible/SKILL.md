@@ -281,7 +281,9 @@ Write the approved section to file.
 
 **Agent delegation**: Spawn in parallel:
 - **`art-director`**: File format preferences, naming convention direction, texture resolution tiers, LOD level expectations, export settings philosophy
-- **`technical-artist`**: Engine-specific hard constraints — poly count budgets per asset category, texture memory limits, material slot counts, importer constraints, anything from the performance budgets (`performance.*` in `project.yaml`, falling back to `.claude/docs/technical-preferences.md`)
+- **`technical-artist`**: Engine-specific hard constraints — material slot counts, importer constraints, anything from the performance budgets (`performance.*` in `project.yaml`, falling back to `.claude/docs/technical-preferences.md`), and poly count and texture memory options per asset category for Omzi to choose
+
+No agent sets a number in this section: for every resolution tier, poly count, texture or memory budget, propose budget options with tradeoffs; Omzi chooses; use only the chosen numbers.
 
 If any art preference conflicts with a technical constraint (e.g., art-director wants 4K textures but performance budget requires 2K for mobile), surface the conflict explicitly with both positions — the ideal and the constrained standard, and the tradeoff. Do NOT silently resolve it — use `AskUserQuestion` to let the user pick (options: the ideal standard, the constrained standard, or document both and let per-asset judgment apply). Ambiguity in asset standards is where production costs are born.
 

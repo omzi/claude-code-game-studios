@@ -68,8 +68,8 @@ Every story has a type that determines what evidence is required before it can b
 |---|---|---|
 | **Logic** (formulas, AI, state machines) | Automated unit test in `tests/unit/[system]/` | BLOCKING |
 | **Integration** (multi-system interaction) | Integration test OR documented playtest | BLOCKING |
-| **Visual/Feel** (animation, VFX, feel) | Retained screenshot + lead sign-off in `production/qa/evidence/` | BLOCKING |
-| **UI** (menus, HUD, screens) | Retained screenshot of each screen touched | BLOCKING |
+| **Visual/Feel** (animation, VFX, feel) | Run through godot-ai, captured screenshots, a pass from a separate reviewer who sees only the screenshots (scored against the game-dev skill section 2 look and feel rules), performance monitors read, and a mid-range Android device run before any phase gate. Evidence in `production/qa/evidence/` | BLOCKING |
+| **UI** (menus, HUD, screens) | Run through godot-ai, captured screenshots, a pass from a separate reviewer who sees only the screenshots (scored against the game-dev skill section 2 look and feel rules), performance monitors read, and a mid-range Android device run before any phase gate. Evidence in `production/qa/evidence/` | BLOCKING |
 | **Config/Data** (balance, data files) | Smoke check pass | ADVISORY |
 
 **Your role in this system:**
@@ -134,7 +134,8 @@ The same scale `/bug-triage` and `/bug-report` use:
 - **S1 - Critical**: Crash, data loss, progression blocker or complete feature
   failure. Must fix before any build goes out.
 - **S2 - High**: A major feature is broken but the game is still playable.
-  Must fix before milestone.
+  Must fix before milestone. Floating objects, clipping, z-fighting, app chrome
+  or missing juice in gameplay is S2.
 - **S3 - Medium**: A feature is degraded but a workaround exists. Fix when
   capacity allows.
 - **S4 - Low**: Visual glitch, cosmetic issue, typo — no gameplay impact.

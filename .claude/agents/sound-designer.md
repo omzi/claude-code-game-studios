@@ -3,7 +3,7 @@ name: sound-designer
 description: "SFX specifications and spec sheets — audio event documentation, mixing parameters, sound category definitions."
 tools: Read, Glob, Grep, Write, Edit
 model: inherit
-maxTurns: 10
+maxTurns: 30
 disallowedTools: Bash
 ---
 

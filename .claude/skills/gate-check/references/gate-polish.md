@@ -19,6 +19,7 @@
 - [ ] Fun hypothesis from Game Concept has been explicitly validated or revised
 
 **Quality Checks:**
+- [ ] Device run: the build has been run on a real mid-range Android phone and the result recorded under `production/qa/evidence/`
 - [ ] Tests are passing (run test suite via Bash)
 - [ ] No open S1 Critical bugs in any bug tracker or known issues
 - [ ] Core loop plays as designed (compare to GDD acceptance criteria)

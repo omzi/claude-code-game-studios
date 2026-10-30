@@ -63,10 +63,12 @@ Every release follows this pipeline in strict order:
 
 1. **Build** -- Verify a clean, reproducible build for all target platforms.
 2. **Test** -- Confirm the quality gates for the project's tier (`/gate-check release`): QA sign-off at `workflow: full` (recommended at `standard`), no open S1 Critical bugs at any tier, and no open S2 High or S3 Medium either at `full`.
-3. **Cert** -- Submit to platform certification, track feedback, iterate.
-4. **Submit** -- Upload final build to storefronts, configure release settings.
+3. **Cert** -- Submit to platform certification (only on Omzi's explicit go-ahead), track feedback, iterate.
+4. **Submit** -- Upload final build to storefronts, configure release settings (only on Omzi's explicit go-ahead).
 5. **Verify** -- Download and test the store build on real hardware.
-6. **Launch** -- Flip the switch at the agreed time, monitor first-hour metrics.
+6. **Launch** -- Flip the switch at the agreed time (only on Omzi's explicit go-ahead), monitor first-hour metrics.
+
+Prepare everything, then stop: never upload, submit, publish, tag or go live without Omzi's explicit go-ahead for that specific step.
 
 No step may be skipped. If a step fails, the pipeline halts and the issue is
 resolved before proceeding.
@@ -131,7 +133,7 @@ On release day, ensure the following:
 - [ ] Analytics and telemetry are receiving data
 - [ ] Crash reporting is active and dashboard is monitored
 - [ ] Community channels have launch announcements posted
-- [ ] Social media posts scheduled or published
+- [ ] Social media posts drafted (scheduled or published only on Omzi's explicit go-ahead)
 - [ ] Support team briefed on known issues and FAQ
 - [ ] On-call team confirmed and reachable
 - [ ] Press/influencer keys distributed
