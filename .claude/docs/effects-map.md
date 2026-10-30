@@ -1913,8 +1913,8 @@ conventions into a brief, manifest or spec. **NOT by `/code-review` and NOT by
 | `variables` | `snake_case` \| `camelCase` | snake_case | camelCase | camelCase |
 | `constants` | `SCREAMING_SNAKE` \| `PascalCase` | SCREAMING_SNAKE | SCREAMING_SNAKE | SCREAMING_SNAKE |
 | `signals` (Godot) / `events` (Unity, Unreal) | `past_tense` \| `on_event_name` | past_tense | on_event_name | OnEventName |
-| `files` | `snake_case` \| `PascalCase` \| `kebab-case` | snake_case | PascalCase | PascalCase |
-| `scenes` / `prefabs` | `snake_case` \| `PascalCase` | snake_case | PascalCase | PascalCase |
+| `files` | `snake_case` \| `PascalCase` \| `kebab-case` \| `TitleCase (class scripts) + kebab-case (all else)` | TitleCase (class scripts) + kebab-case (all else) | PascalCase | PascalCase |
+| `scenes` / `prefabs` | `snake_case` \| `PascalCase` \| `TitleCase (component scenes) + kebab-case (all else)` | TitleCase (component scenes) + kebab-case (all else) | PascalCase | PascalCase |
 
 > **`signals` vs `events`:** Godot uses signals natively; Unity uses C# events
 > or UnityEvents; Unreal uses delegates and dynamic multicast. The field stays

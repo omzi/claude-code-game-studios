@@ -23,7 +23,7 @@
 **Expected behavior**:
 - Lays out the workflow its String Extraction Workflow defines: strings enter through the localization API (never raw text), land in the base locale file with a context comment, extraction tooling collects new and modified strings, and they go to translators with context, screenshots, and character limits, then come back into the locale files
 - Scopes extraction to player-facing text from code, UI, and content — "Ensure no hardcoded strings reach production"
-- Specifies structured locale files (JSON, CSV, or a project-appropriate format), one file per language per system or feature area (the `locales/en/ui_menu.json` pattern)
+- Specifies structured locale files in the engine's format: on Godot, `res://localization/strings.csv` (one `keys` column, one column per locale); on another engine, its native string tables
 - Uses hierarchical dot-notation keys that describe context (`menu.settings.audio.volume_label`) — not positional or index-based keys — each with a context comment giving where it appears, its character limit, and its variables
 - Names `tools-programmer` for the extraction automation and `ui-programmer` for text rendering (Delegation Map), and asks before writing any pipeline document
 

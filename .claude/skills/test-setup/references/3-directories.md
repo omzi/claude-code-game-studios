@@ -52,8 +52,8 @@ production/qa/
 ## Test Naming
 
 Names follow the engine's language (`.claude/rules/test-standards.md`):
-- **Godot**: file `[system]_[feature]_test.gd`, function `test_[scenario]_[expected]`
-  — `combat_damage_test.gd` → `test_base_attack_returns_expected_damage()`
+- **Godot**: file `[ClassName].test.gd`, function `test_[scenario]_[expected]`
+  — `CombatDamage.test.gd` → `test_base_attack_returns_expected_damage()`
 - **Unity**: class `[System]Tests` in `[System]Tests.cs`, method `[Scenario]_[Expected]`
   — `CombatTests.cs` → `BaseAttack_ReturnsExpectedDamage()`
 - **Unreal**: class `F[System][Scenario]Test`, test name `<Project>.[System].[Scenario]`
@@ -97,8 +97,8 @@ sign-off records — the completion summary lists it, so it must exist.
 and `commands.test` use is:
 
 ```bash
-godot --headless --path . --import
-godot --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode
+godot.console --headless --path . --import
+godot.console --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode
 ```
 
 Run the import first. A fresh clone has no `.godot/` class cache, and a run

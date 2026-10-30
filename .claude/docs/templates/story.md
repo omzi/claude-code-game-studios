@@ -93,8 +93,8 @@ checks scope against it.*
 
 **Story Type**: [type]
 **Required evidence**:
-- Logic: `tests/unit/[system]/[story-slug]_test.[ext]` — must exist and pass (`/story-done` checks that it EXISTS; pass/fail is established by `/gate-check` and `/smoke-check`, both later)
-- Integration: `tests/integration/[system]/[story-slug]_test.[ext]` OR playtest doc
+- Logic: `tests/unit/[system]/[ClassName].test.gd` — must exist and pass (`/story-done` checks that it EXISTS; pass/fail is established by `/gate-check` and `/smoke-check`, both later)
+- Integration: `tests/integration/[system]/[ClassName].test.gd` OR playtest doc
 - Visual/Feel: a retained screenshot in `production/qa/evidence/` + sign-off in `production/qa/evidence/[story-slug]-evidence.md`
 - UI: a retained screenshot of each screen touched, in `production/qa/evidence/`
 - Config/Data: smoke check pass (`production/qa/smoke-*.md`)

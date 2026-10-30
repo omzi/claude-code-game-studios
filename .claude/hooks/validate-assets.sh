@@ -31,7 +31,7 @@ fi
 [ -n "$CCGS_ROOT" ] && cd "$CCGS_ROOT" 2>/dev/null || true
 
 # Claude Code PostToolUse hook: Validates asset files after Write/Edit
-# Checks JSON validity of data files and, in Godot's assets/, naming conventions.
+# Checks JSON validity of data files and studio naming in res:// (naming-check.sh).
 # Asset roots per engine: Godot assets/, Unity Assets/, Unreal Content/.
 #
 # Exit behavior:
@@ -84,27 +84,18 @@ case "$FILE_PATH" in
 esac
 shopt -u nocasematch
 
-# Only check files under an asset root.
-case "$REL_PATH" in
-    assets/*|Assets/*|Content/*) ;;
-    *) exit 0 ;;
-esac
-
 FILENAME=$(basename "$REL_PATH")
 WARNINGS=""   # Style/convention issues -- exit 0 with advisory message
 ERRORS=""     # Build-breaking issues -- exit 2 so Claude hears about it
 
-# ADVISORY: naming convention -- lowercase with underscores, the Godot
-# convention, so only in Godot's assets/. Unity and Unreal name assets in
-# PascalCase with type prefixes; warning on every one of them trains the user
-# to ignore this hook. Naming issues warn, never block.
-# Uses grep -E (POSIX) not grep -P (Perl) for Windows Git Bash compatibility
-case "$REL_PATH" in
-    assets/*)
-        if echo "$FILENAME" | grep -qE '[A-Z[:space:]-]'; then
-            WARNINGS="$WARNINGS\n  NAMING: $REL_PATH must be lowercase with underscores (got: $FILENAME)"
-        fi ;;
-esac
+# ADVISORY: studio naming in res:// -- TitleCase class scripts and component
+# scenes, lowercase words joined by hyphens for everything else. The rule lives
+# in .claude/scripts/naming-check.sh, shared with validate-commit.sh. Naming
+# issues warn, never block.
+if [ -f .claude/scripts/naming-check.sh ] && . .claude/scripts/naming-check.sh 2>/dev/null; then
+    _NC=$(naming_check "$REL_PATH")
+    [ -n "$_NC" ] && WARNINGS="$WARNINGS\n$_NC"
+fi
 
 # BLOCKING: Check JSON validity for data files, in any engine's data folder --
 # the same set validate-commit.sh blocks on.

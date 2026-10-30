@@ -201,7 +201,7 @@ Assemble the full QA plan document. Use this structure:
 manual/smoke verification only.)*
 
 ### [Story Title] — [Type]
-**Test file path**: `tests/[unit|integration]/[system]/[story-slug]_test.[ext]`
+**Test file path**: `tests/[unit|integration]/[system]/[ClassName].test.gd`
 **What to test**:
 - [Specific formula or rule from the GDD Formulas section]
 - [Each named state transition or decision branch]

@@ -86,12 +86,12 @@ Open-ended questions and file-write confirmations stay in plain conversation.
 
 ### Asset Naming Convention
 
-All assets must follow: `[category]_[name]_[variant]_[size].[ext]`
+All assets must follow: `[category]-[name]-[variant]-[size].[ext]`
 Examples:
-- `env_[object]_[descriptor]_large.png`
-- `char_[character]_idle_01.png`
-- `ui_btn_primary_hover.png`
-- `vfx_[effect]_loop_small.png`
+- `env-[object]-[descriptor]-large.png`
+- `char-[character]-idle-01.png`
+- `ui-btn-primary-hover.png`
+- `vfx-[effect]-loop-small.png`
 
 ## Gate Verdict Format
 

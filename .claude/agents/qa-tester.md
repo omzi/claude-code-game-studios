@@ -68,7 +68,7 @@ Before writing any code:
 For Logic and Integration stories, you write the test file (or scaffold it for the developer to complete).
 
 **Test naming** follows the engine's language (`.claude/rules/test-standards.md`):
-Godot `[system]_[feature]_test.gd` with `test_[scenario]_[expected]`; Unity
+Godot `[ClassName].test.gd` with `test_[scenario]_[expected]`; Unity
 `[System]Tests` with `[Scenario]_[Expected]`; Unreal one class per test,
 `F[System][Scenario]Test`, named `<Root>.[System].[Scenario]` (the root is below).
 

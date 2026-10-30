@@ -23,7 +23,7 @@
 **Input**: "Set up a CI pipeline for our Godot 4 project. It should run tests on every push to main and every pull request, and fail the build if tests fail."
 **Expected behavior**:
 - Produces a GitHub Actions workflow YAML (`.github/workflows/ci.yml` or equivalent)
-- Uses the Godot headless test runner command from `coding-standards.md`: `godot --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode`
+- Uses the Godot headless test runner command from `coding-standards.md`: `godot.console --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode`
 - Configures trigger on `push` to main and `pull_request`
 - Sets the job to fail (non-zero exit) when tests fail — does NOT add `continue-on-error` or any other setting that lets the pipeline pass on a test failure
 - Shows the workflow and asks "May I write this to `.github/workflows/<file>`?" before writing it (Collaboration Protocol, step 5)

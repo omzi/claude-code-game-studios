@@ -73,7 +73,7 @@ Fixture defaults.
 5. `.github/workflows/tests.yml` uses `godot-gdunit-labs/gdUnit4-action@v1`
    with `version: 'installed'` and `checks: write`
 6. The documented test command matches `coding-standards.md`'s CI command:
-   `godot --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode`
+   `godot.console --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode`
 7. Phase 6 summary; verdict COMPLETE
 
 **Assertions:**

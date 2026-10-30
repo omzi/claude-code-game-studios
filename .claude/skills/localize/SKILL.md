@@ -64,7 +64,7 @@ Report all findings with file paths and line numbers. This mode is read-only —
 ## Phase 2B: Extract Mode
 
 - Scan all source files for localized string references
-- Compare against the existing string table in `assets/data/strings/`
+- Compare against the existing string table in `res://localization/strings.csv`
 - Generate new entries for strings not yet keyed
 - Suggest key names following the convention: `[category].[subcategory].[description]`
   - Example: `ui.hud.health_label`, `dialogue.npc.merchant.greeting`, `menu.main.play_button`
@@ -76,7 +76,7 @@ Report all findings with file paths and line numbers. This mode is read-only —
 
 Output a diff of new strings to add to the string table.
 
-Present the diff to the user. Ask: "May I write these new entries to `assets/data/strings/strings-en.json`?"
+Present the diff to the user. Ask: "May I write these new entries to `res://localization/strings.csv`?"
 
 If yes, write only the diff (new entries), not a full replacement. Verdict: **COMPLETE** — strings extracted and written.
 
@@ -84,7 +84,7 @@ If yes, write only the diff (new entries), not a full replacement. Verdict: **CO
 
 ## Phase 2C: Validate Mode
 
-Read all string table files in `assets/data/strings/`. For each locale, check:
+Read the string table `res://localization/strings.csv` (one column per locale). For each locale, check:
 
 - **Completeness** — key exists in source (en) but no translation for this locale
 - **Placeholder mismatches** — source has `{name}` but translation omits it or adds extras
@@ -116,7 +116,7 @@ String freeze: [Active / Not yet called / Lifted]
 
 > **Every cell above is a count you must take from the string table — including
 > the source row.** Do not pre-fill the source locale as `100%`: that asserts a
-> result before counting, and on a project with no `assets/data/strings/` it
+> result before counting, and on a project with no `res://localization/strings.csv` it
 > produces a coverage report for a table that does not exist. If the string table
 > is absent, the whole status output is
 > **`NOT ASSESSED — no string table found`**, not a matrix of zeros with a
@@ -143,7 +143,7 @@ Read:
 - `design/gdd/` — extract game genre, tone, setting, character names. Read the
   GDDs by section: find the headings you need with the Grep tool (pattern `^#`,
   content mode) and Read those ranges with offset and limit.
-- `assets/data/strings/strings-en.json` — the source string table
+- `res://localization/strings.csv` — the string table (Godot CSV translation; the `en` column is the source)
 - Any existing lore or narrative documents in `design/narrative/`
 
 Generate `production/localization/translator-brief-[locale]-[date].md`:
@@ -188,7 +188,7 @@ Where no limit is stated, target ±30% of the English length as a guideline.
 
 ## Contact
 Direct questions to: [placeholder for user/team contact]
-Delivery format: JSON, same schema as strings-en.json
+Delivery format: CSV, one column for the locale, same keys as `res://localization/strings.csv`
 ```
 
 Ask: "May I write this translator brief to `production/localization/translator-brief-[locale]-[date].md`?"
@@ -197,7 +197,7 @@ Ask: "May I write this translator brief to `production/localization/translator-b
 
 ## Phase 2F: Cultural Review Mode
 
-Spawn `localization-lead` via `Agent`. Ask them to audit the following for cultural sensitivity across the target locales (read from `assets/data/strings/` and `assets/`):
+Spawn `localization-lead` via `Agent`. Ask them to audit the following for cultural sensitivity across the target locales (read from `res://localization/strings.csv` and `assets/`):
 
 ### Content Areas to Review
 
@@ -249,7 +249,7 @@ Manage the voice-over localization process. Determine the sub-task from the argu
 
 ### VO Pipeline: Scan
 
-Read `assets/data/strings/` and `design/narrative/`. Identify:
+Read `res://localization/strings.csv` and `design/narrative/`. Identify:
 - All dialogue lines (keys matching `dialogue.*`) with source text
 - Lines already recorded (audio file exists in `assets/audio/vo/`)
 - Lines not yet recorded

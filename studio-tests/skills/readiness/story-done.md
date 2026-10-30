@@ -58,7 +58,7 @@ Fixture defaults.
   - `TR-light-001`; the story quotes an older wording of the requirement, while
     `tr-registry.yaml` holds the current text, which the implementation matches
   - `ADR: ADR-0003` (Accepted), whose guidance was followed
-  - A `## Test Evidence` section naming `tests/unit/light/pickup_test.gd`, which
+  - A `## Test Evidence` section naming `tests/unit/light/Pickup.test.gd`, which
     exists with one test per criterion — `test_pickup_adds_to_inventory`,
     `test_pickup_refused_at_limit`, `test_pickup_removes_world_light` — so every
     criterion maps to a test

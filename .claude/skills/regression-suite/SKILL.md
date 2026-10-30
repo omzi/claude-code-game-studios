@@ -90,8 +90,8 @@ If it does not exist: note "No regression suite found — will create one."
 
 Glob all test files:
 ```
-tests/unit/**/*_test.*
-tests/integration/**/*_test.*
+tests/unit/**/*.test.gd
+tests/integration/**/*.test.gd
 tests/regression/**/*
 ```
 
@@ -173,7 +173,7 @@ For each closed bug:
 
 For MISSING REGRESSION TEST items:
 - Flag them as regression gaps
-- Suggest the test file path: `tests/unit/[system]/[bug-slug]_regression_test.[ext]`
+- Suggest the test file path: `tests/unit/[system]/[ClassName]Regression.test.gd`
 - Note: "Without this test, this bug can silently return in a future sprint."
 
 ---
@@ -223,8 +223,8 @@ Check for drift indicators:
 ### Recommended New Regression Tests
 | Priority | System | Suggested Test File | Covers |
 |----------|--------|---------------------|--------|
-| HIGH | [system] | `tests/unit/[system]/[slug]_regression_test.[ext]` | BUG-NNNN / AC-[N] |
-| MEDIUM | [system] | `tests/unit/[system]/[slug]_test.[ext]` | [criterion] |
+| HIGH | [system] | `tests/unit/[system]/[ClassName]Regression.test.gd` | BUG-NNNN / AC-[N] |
+| MEDIUM | [system] | `tests/unit/[system]/[ClassName].test.gd` | [criterion] |
 ```
 
 ### Suite manifest format (`tests/regression-suite.md`)
@@ -263,7 +263,7 @@ of which tests should always pass before a release:
 
 | Test File | Test Function (if known) | Covers | Added |
 |-----------|--------------------------|--------|-------|
-| `tests/unit/[system]/[file]_test.[ext]` | `test_[scenario]` | AC-N / BUG-NNNN | [date] |
+| `tests/unit/[system]/[ClassName].test.gd` | `test_[scenario]` | AC-N / BUG-NNNN | [date] |
 
 ## Known Gaps
 

@@ -24,8 +24,8 @@ Closes the implementation loop for a single story by verifying every acceptance 
 ### Test Evidence Files (presence checked, not pre-required to exist — absence triggers gate)
 | Story Type | Expected Location |
 |------------|------------------|
-| Logic | `tests/unit/[system]/[story-slug]_test.[ext]` |
-| Integration | `tests/integration/[system]/[story-slug]_test.[ext]` OR `production/qa/playtests/` playtest record |
+| Logic | `tests/unit/[system]/[ClassName].test.gd` |
+| Integration | `tests/integration/[system]/[ClassName].test.gd` OR `production/qa/playtests/` playtest record |
 | Visual/Feel | `production/qa/evidence/[story-slug]-evidence.md` + a retained screenshot |
 | UI | A retained screenshot of each screen touched, under `production/qa/evidence/` — no evidence doc or sign-off required |
 | Config/Data | `production/qa/smoke-*.md` |

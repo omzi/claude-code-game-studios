@@ -95,9 +95,7 @@ scanned files — Naming, Size, Format, Orphaned — are
 ## Phase 3: Run Compliance Checks
 
 **Naming conventions:**
-- Art: `[category]_[name]_[variant]_[size].[ext]`
-- Audio: `[category]_[context]_[name]_[variant].[ext]`
-- All files must be lowercase with underscores
+Class scripts and component scenes: TitleCase matching class_name. Everything else: lowercase words joined by hyphens. No underscores or spaces anywhere in res://.
 
 These are Godot's conventions. Unity and Unreal name assets in PascalCase, so on
 those engines check names only against a naming rule the art bible states; with

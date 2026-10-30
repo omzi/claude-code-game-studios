@@ -107,7 +107,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Skill reads the sprint plan's completed stories and the closed bugs
 2. BUG-0012 is MISSING REGRESSION TEST, with suggested path
-   `tests/unit/inventory/[bug-slug]_regression_test.[ext]` and the note
+   `tests/unit/inventory/[ClassName]Regression.test.gd` and the note
    "Without this test, this bug can silently return in a future sprint."
 3. Report shows the Bug Regression Coverage table with BUG-0012 marked NO
 4. After the "May I write/update" ask, new entries are appended with targeted
@@ -117,7 +117,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] BUG-0012 is reported as MISSING REGRESSION TEST
-- [ ] The suggested path follows `tests/unit/[system]/[bug-slug]_regression_test.[ext]`
+- [ ] The suggested path follows `tests/unit/[system]/[ClassName]Regression.test.gd`
 - [ ] No existing manifest entry is removed
 - [ ] The next-sprint story recommendation appears because bug regression gaps > 0
 - [ ] Verdict is COMPLETE after approval

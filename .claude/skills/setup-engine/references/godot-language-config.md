@@ -51,8 +51,8 @@ and A3.
 - Classes: PascalCase (e.g., `PlayerController`)
 - Variables/functions: snake_case (e.g., `move_speed`)
 - Signals: snake_case past tense (e.g., `health_changed`)
-- Files: snake_case matching class (e.g., `player_controller.gd`)
-- Scenes: snake_case matching the file (e.g., `player_controller.tscn`)
+- Files: TitleCase matching class_name for class scripts (e.g., `PlayerController.gd`); lowercase words joined by hyphens for every other file (e.g., `fire-crackle.ogg`); no underscores or spaces in res:// paths
+- Scenes: TitleCase matching class_name for reusable component scenes (e.g., `Traveller.tscn`); lowercase words joined by hyphens for levels and every other scene (e.g., `chapter-one.tscn`). Folders: lowercase words joined by hyphens
 - Constants: UPPER_SNAKE_CASE (e.g., `MAX_HEALTH`)
 
 > **This list and the `naming` enum table in Section 5.5.1 of the skill must

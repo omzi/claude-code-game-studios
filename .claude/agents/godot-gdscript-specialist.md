@@ -104,8 +104,7 @@ Before writing any code:
 - Node references: name matches the node type or purpose (`var sprite: Sprite2D`)
 
 ### File Organization
-- One `class_name` per file — file name matches class name in `snake_case`
-  - `player_character.gd` → `class_name PlayerCharacter`
+- One class_name per file; the file name is the class name in TitleCase: BeatClock.gd for class_name BeatClock.
 - Section order within a file:
   1. `class_name` declaration
   2. `extends` declaration

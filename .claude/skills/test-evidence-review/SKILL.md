@@ -112,8 +112,9 @@ it. Fall back to searching only when no path is stated or it is not found:
 **Logic stories**: search the engine's unit-test root — `tests/unit/[system]/`
 (Godot), `Assets/Tests/EditMode/` (Unity), `Source/<Module>/Private/Tests/`
 (Unreal); see `.claude/docs/directory-structure.md` — for a file whose name
-contains the story slug or its system. Test files are named per
-`.claude/rules/test-standards.md`, not necessarily `[story-slug]_test.*`.
+contains the story slug or its system, compared ignoring case and hyphens (slug
+`crit-roll` matches `CritRoll.test.gd`). Test files are named per
+`.claude/rules/test-standards.md` (`[ClassName].test.gd` on Godot), not after the story slug.
 
 **Integration stories**: the same, under the integration root (`tests/integration/[system]/`,
 `Assets/Tests/PlayMode/`, or Unreal's test root)

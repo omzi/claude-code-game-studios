@@ -48,7 +48,7 @@ will determine whether the automated test row contributes to a FAIL verdict."
 
 | Story | Type | Test File | Coverage Status |
 |-------|------|-----------|----------------|
-| [title] | Logic | `tests/unit/[system]/[slug]_test.[ext]` | COVERED |
+| [title] | Logic | `tests/unit/[system]/[ClassName].test.gd` | COVERED |
 | [title] | Visual/Feel | `production/qa/evidence/[slug]-screenshots.md` | MANUAL |
 | [title] | Logic | — | MISSING ⚠ |
 | [title] | Config/Data | — | EXPECTED |
@@ -78,7 +78,7 @@ Stories that must have test evidence before they can be marked COMPLETE via
 `/story-done`:
 
 - **[story title]** (`[path]`) — Logic story has no test file.
-  Expected location: `tests/unit/[system]/[story-slug]_test.[ext]`
+  Expected location: `tests/unit/[system]/[ClassName].test.gd`
 
 [If none:] "All Logic and Integration stories have test coverage."
 [If `quick`:] "Not checked (quick run)." — never the line above, which a quick

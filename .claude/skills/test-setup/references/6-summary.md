@@ -22,7 +22,7 @@ Files created:
 Next steps:
 1. [Engine-specific install step, e.g., "Install GdUnit4 via the Asset Store (AssetLib before Godot 4.7)"]
 2. Write your first test in the engine's test root:
-   tests/unit/[system]/[system]_[feature]_test.gd (Godot),
+   tests/unit/[system]/[ClassName].test.gd (Godot),
    Assets/Tests/EditMode/[System]Tests.cs (Unity), or
    Source/<Module>/Private/Tests/[System]Test.cpp (Unreal)
 3. Run `/qa-plan sprint` before your first sprint to classify stories and set

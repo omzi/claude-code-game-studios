@@ -13,8 +13,8 @@ All shader files, in every engine, must follow these standards to maintain
 visual quality, performance, and cross-platform compatibility.
 
 ## Naming Conventions
-- File naming: `[type]_[category]_[name].[ext]`
-  - `spatial_env_water.gdshader` (Godot)
+- File naming: `[type]-[category]-[name].[ext]`
+  - `spatial-env-water.gdshader` (Godot)
   - `SG_Env_Water` (Unity Shader Graph)
   - `M_Env_Water` (Unreal Material)
 - Use descriptive names that indicate the material purpose

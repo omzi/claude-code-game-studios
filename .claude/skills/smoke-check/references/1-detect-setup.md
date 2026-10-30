@@ -25,7 +25,7 @@ Before running anything, understand the environment:
    is in `.claude/docs/directory-structure.md` — Godot `tests/unit/` and
    `tests/integration/`, Unity `Assets/Tests/`, Unreal
    `Source/*/Private/Tests/`) and `tests/smoke/` for actual test files. A
-   **test file** is one the engine's test runner executes — a `*_test.gd` suite,
+   **test file** is one the engine's test runner executes — a `*.test.gd` suite,
    a C# test class, an Unreal automation test source. Markdown checklists do not
    count: `/test-setup` always writes `tests/smoke/critical-paths.md`, and
    counting it would hide exactly the zero-test state this step exists to catch.

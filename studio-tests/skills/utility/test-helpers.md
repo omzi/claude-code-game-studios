@@ -7,7 +7,7 @@ the engine's **helper root** — the only place its test runner compiles them:
 `tests/helpers/` on Godot, `Assets/Tests/EditMode/Helpers/` on Unity (inside the
 `EditModeTests` assembly), `Source/<Module>/Private/Tests/Helpers/` on Unreal. It
 writes base assertion and factory helpers (`scaffold`), and a
-`[helper root]/[system]_factory.[ext]` per system built from that system's GDD
+`[helper root]/[System]Factory.[ext]` per system built from that system's GDD
 (`[system-name]` or `all`). No argument runs `scaffold` when no helpers exist,
 else `all`. It reads `engine.name`, `engine.language` and `testing.framework`
 from `project.yaml` (falling back to `technical-preferences.md`), samples up to
@@ -59,7 +59,7 @@ Fixture defaults.
 - `project.yaml` has `engine.name: Godot`, `engine.language: GDScript`,
   `testing.framework: gdUnit4`; `addons/gdUnit4/` is installed, so its
   assertion API can be confirmed from the project
-- `tests/unit/player/player_movement_test.gd` exists
+- `tests/unit/player/PlayerMovement.test.gd` exists
 - `design/gdd/player.md` has a Formulas section bounding health to 0–100
 - No existing files in `tests/helpers/`; the user approves the write
 
@@ -69,7 +69,7 @@ Fixture defaults.
 1. Skill reads engine, language and framework; samples the existing test file
 2. Skill greps `design/gdd/player.md` for the Formulas / Edge Cases / Detailed
    Rules headings instead of reading it whole
-3. Skill drafts `tests/helpers/player_factory.gd`: a `class_name` helper that
+3. Skill drafts `tests/helpers/PlayerFactory.gd`: a `class_name` helper that
    `extends RefCounted`, static `make_*` factories with default parameters,
    bound constants commented as coming from the GDD, and a header line
    "Based on: design/gdd/player.md"
@@ -79,7 +79,7 @@ Fixture defaults.
 6. Files written on approval; verdict COMPLETE, followed by the per-engine usage note
 
 **Assertions:**
-- [ ] Generated helper is GDScript at `tests/helpers/player_factory.gd`
+- [ ] Generated helper is GDScript at `tests/helpers/PlayerFactory.gd`
 - [ ] Bound constants trace to the GDD's Formulas section (not invented values)
 - [ ] Helper extends `RefCounted`, not the test-suite base class, and uses no Autoload/singleton
 - [ ] No bare `assert()` and no unresolved `FAIL_IF` reaches the file
@@ -112,26 +112,26 @@ Fixture defaults.
 
 **Fixture:**
 - Godot/GDScript/gdUnit4 configured as in Case 1
-- `tests/helpers/game_assertions.gd` already exists with hand-written additions
-- `tests/helpers/game_factory.gd` and `tests/helpers/scene_runner_helper.gd` do
+- `tests/helpers/GameAssertions.gd` already exists with hand-written additions
+- `tests/helpers/GameFactory.gd` and `tests/helpers/SceneRunnerHelper.gd` do
   not exist; the user approves the write
 
 **Input:** `/test-helpers scaffold`
 
 **Expected behavior:**
-1. Skill drafts the Godot base helpers only — `game_assertions.gd`,
-   `game_factory.gd` and `scene_runner_helper.gd`; no system-specific helpers in
+1. Skill drafts the Godot base helpers only — `GameAssertions.gd`,
+   `GameFactory.gd` and `SceneRunnerHelper.gd`; no system-specific helpers in
    `scaffold` mode
 2. Skill asks "May I write these helper files to `tests/helpers/`?"
-3. The two missing files, `tests/helpers/game_factory.gd` and
-   `tests/helpers/scene_runner_helper.gd`, are created
-4. For the existing file, skill reports: "Skipping `tests/helpers/game_assertions.gd`
+3. The two missing files, `tests/helpers/GameFactory.gd` and
+   `tests/helpers/SceneRunnerHelper.gd`, are created
+4. For the existing file, skill reports: "Skipping `tests/helpers/GameAssertions.gd`
    — already exists. Remove the file manually if you want it regenerated."
 5. Verdict COMPLETE
 
 **Assertions:**
-- [ ] `scaffold` mode generates no `[system]_factory` helper
-- [ ] The existing `game_assertions.gd` is left byte-for-byte unchanged
+- [ ] `scaffold` mode generates no `[System]Factory` helper
+- [ ] The existing `GameAssertions.gd` is left byte-for-byte unchanged
 - [ ] The skip message names the existing file and how to regenerate it
 - [ ] Only the two missing files are written; Verdict is COMPLETE
 

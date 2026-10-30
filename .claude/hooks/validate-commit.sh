@@ -811,6 +811,16 @@ if [ -n "$SRC_FILES" ]; then
     fi
 fi
 
+# Studio naming (warning only), on every staged file still on disk: files made
+# through godot-ai, Blender MCP or builder scripts never pass validate-assets.sh.
+if [ -f .claude/scripts/naming-check.sh ] && . .claude/scripts/naming-check.sh 2>/dev/null; then
+    while IFS= read -r _f; do
+        [ -n "$_f" ] && [ -e "$_f" ] || continue
+        _NC=$(naming_check "$_f")
+        [ -n "$_NC" ] && WARNINGS="$WARNINGS\n$_NC"
+    done <<< "$STAGED"
+fi
+
 # Warnings allow the commit. They go out as hook JSON: stderr on exit 0 reaches
 # the debug log only, so neither the user nor Claude ever saw them. stderr stays
 # as the fallback for a tree whose helper did not load.

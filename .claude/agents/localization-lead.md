@@ -84,8 +84,9 @@ Before drafting anything:
   context: `menu.settings.audio.volume_label`, `dialogue.npc.guard.greeting_01`.
   When keys are renamed or merged, move every reference to the new key, carry the
   existing translations over, and retire the old key only once nothing looks it up.
-- **Locale file structure**: One file per language per system/feature area.
-  Example: `locales/en/ui_menu.json`, `locales/ja/ui_menu.json`
+- **Locale file structure**: On Godot, strings live in `res://localization/strings.csv`
+  (Godot CSV translation: one `keys` column, one column per locale), not JSON under
+  assets/. On another engine, use its native string tables.
 - **Fallback chains**: Define a fallback order (e.g., `fr-CA -> fr -> en`).
   Missing strings must fall back gracefully, never display raw keys to players.
 - **Pluralization**: Use ICU MessageFormat or equivalent for plural rules,

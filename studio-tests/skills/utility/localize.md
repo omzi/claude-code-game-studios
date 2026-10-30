@@ -5,12 +5,12 @@
 `/localize` runs the localization pipeline through one required subcommand:
 `scan`, `extract`, `validate`, `status`, `brief`, `cultural-review`,
 `vo-pipeline`, `rtl-check`, `freeze` or `qa`. It works on a single source string
-table under `assets/data/strings/` (`strings-en.json` is the English source; the
-other locales sit beside it) and writes reports under `production/localization/`.
+table at `localization/strings.csv` (Godot CSV translation: the `en` column is the
+source; the other locales are columns beside it) and writes reports under `production/localization/`.
 
 `scan`, `validate` and `status` are read-only. `extract` shows a diff of new
 keyed entries and asks "May I write these new entries to
-`assets/data/strings/strings-en.json`?" before appending only the diff; its
+`res://localization/strings.csv`?" before appending only the diff; its
 verdict is **COMPLETE**. With no subcommand the skill prints usage and stops with
 verdict **FAIL** — missing required subcommand. A scan whose code root cannot be
 resolved reports `NOT ASSESSED — code root unresolved`; a status run with no
@@ -61,27 +61,27 @@ Fixture defaults.
 **Fixture:**
 - `project.yaml` has `engine.name: Godot`, so the code root is `src/`
 - `src/ui/hud.gd` wraps three strings in `tr()` that have no entry in
-  `assets/data/strings/strings-en.json`
+  `localization/strings.csv`
 - No `production/localization/freeze-status.md` exists
 
 **Input:** `/localize extract`
 
 **Expected behavior:**
 1. Skill scans source files for localized string references and compares them
-   against the table in `assets/data/strings/`
+   against the table in `localization/strings.csv`
 2. Skill proposes one new entry per unkeyed string, with a key in the form
    `[category].[subcategory].[description]` (e.g. `ui.hud.health_label`)
 3. Each new entry carries a `context` field: where it appears, maximum length,
    placeholder meaning
 4. Skill presents the diff and asks "May I write these new entries to
-   `assets/data/strings/strings-en.json`?"
+   `res://localization/strings.csv`?"
 5. On approval it writes only the new entries (not a full replacement);
    verdict is COMPLETE
 
 **Assertions:**
 - [ ] Proposed keys follow `[category].[subcategory].[description]`
 - [ ] Every new entry includes a `context` field
-- [ ] The diff is shown and "May I write" names `assets/data/strings/strings-en.json` before any write
+- [ ] The diff is shown and "May I write" names `res://localization/strings.csv` before any write
 - [ ] Only the three new entries are written — existing entries are not rewritten
 - [ ] Verdict is COMPLETE
 
@@ -110,15 +110,14 @@ Fixture defaults.
 ### Case 3: Validate — Gaps Reported by Locale, Nothing Written
 
 **Fixture:**
-- `assets/data/strings/` holds `strings-en.json`, `strings-fr.json` and
-  `strings-de.json`
-- `strings-de.json` lacks 4 keys present in the English source
-- One French entry omits the `{playerName}` placeholder its English source has
+- `localization/strings.csv` has `en`, `fr` and `de` columns
+- The `de` column is empty for 4 keys present in the English source
+- One `fr` cell omits the `{playerName}` placeholder its English source has
 
 **Input:** `/localize validate`
 
 **Expected behavior:**
-1. Skill reads every string table file in `assets/data/strings/`
+1. Skill reads the string table `localization/strings.csv`
 2. For `de` it reports the 4 keys as Completeness gaps
 3. For `fr` it reports a Placeholder mismatch on the affected key
 4. Results are grouped by locale and severity
@@ -135,7 +134,7 @@ Fixture defaults.
 ### Case 4: Status With No String Table — NOT ASSESSED
 
 **Fixture:**
-- `assets/data/strings/` does not exist
+- `localization/strings.csv` does not exist
 
 **Input:** `/localize status`
 
@@ -156,7 +155,7 @@ Fixture defaults.
 ### Case 5: Director Gate Check — None; Cultural Review Uses localization-lead
 
 **Fixture:**
-- `assets/data/strings/strings-en.json` exists with player-facing strings
+- `localization/strings.csv` exists with player-facing strings
 - Any review mode
 
 **Input:** `/localize cultural-review`
@@ -207,7 +206,7 @@ Fixture defaults.
 ### Case 7: QA on a Locale Nobody Has Played — NOT ASSESSED
 
 **Fixture:**
-- `assets/data/strings/strings-en.json` and `strings-fr.json` exist and validate
+- `localization/strings.csv` has `en` and `fr` columns that validate
   cleanly
 - No one has played the French build: there are no in-game observations for the
   functional, overflow, contextual-accuracy or VO checks

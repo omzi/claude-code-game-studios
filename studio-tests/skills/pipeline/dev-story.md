@@ -73,7 +73,7 @@ Fixture defaults.
   Type Logic, `Requirement: TR-combat-001`, `ADR Governing Implementation: ADR-0003`,
   an `ADR Version` equal to ADR-0003's `## Last Verified` date, a `Manifest Version`
   equal to the manifest header date, Dependencies None, Test Evidence
-  `tests/unit/combat/combat_damage_calc_test.gd`
+  `tests/unit/combat/DamageCalc.test.gd`
 - `docs/architecture/tr-registry.yaml` has `TR-combat-001`; ADR-0003 exists and is
   Accepted; `docs/architecture/control-manifest.md` exists
 - `production/sprint-status.yaml` does not exist
@@ -103,7 +103,7 @@ Fixture defaults.
 - [ ] The In Progress ask names the story file; `Status:` becomes `In Progress` only after it and before any agent is spawned, and the sprint-status-absent line is printed
 - [ ] Primary is `gameplay-programmer`; secondary comes from `specialists.code`, not the roster table
 - [ ] The ADR guidance is passed inline, not as the ADR path
-- [ ] The brief names `tests/unit/combat/combat_damage_calc_test.gd` (`[system]_[feature]_test.gd`) and requires one test per acceptance criterion
+- [ ] The brief names `tests/unit/combat/DamageCalc.test.gd` (`[ClassName].test.gd`) and requires one test per acceptance criterion
 - [ ] The parse check's command and exit code are reported, and exactly one `Run result:` line appears
 - [ ] Story is NOT marked Complete; the handoff is `/code-review` then `/story-done`
 - [ ] The CHECKPOINT block in `active.md` is overwritten, not appended to

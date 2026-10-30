@@ -21,8 +21,8 @@ engine has a native way.
 
 ## The procedure
 
-1. **Launch windowed** at a fixed resolution — `1280x720` unless the project
-   says otherwise — using `commands.run` from `project.yaml`. Never the
+1. **Launch windowed** at the capture size Omzi chose for this game (portrait
+   for phones) — using `commands.run` from `project.yaml`. Never the
    headless / batch / null-RHI flag: those exist to *skip* rendering.
 2. **Launch straight into the scene or map the story touched.** A feature that
    is only reachable through the main menu and three clicks is a feature the
@@ -50,14 +50,14 @@ engine has a native way.
 
 | `engine.name` | Launch | Capture | Output lands in | Never use | Scaffold needed |
 |---|---|---|---|---|---|
-| Godot 4 | `godot --path . --windowed --resolution 1280x720 <scene>.tscn` | `--write-movie <path>.png --quit-after <N>` | beside the given path, `<name>00000000.png` … | `--headless` | **none** |
+| Godot 4 | `godot.console --path . --windowed <scene>.tscn` | `--write-movie <path>.png --quit-after <N>` | beside the given path, `<name>00000000.png` … | `--headless` | **none** |
 | Unity 6 | built player `.exe -screen-width 1280 -screen-height 720 -screen-fullscreen 0 --scene <Name>` | `ScreenCapture.CaptureScreenshot(<abs path>)` from a bootstrap script | the absolute path you pass | `-batchmode`, `-nographics` | one MonoBehaviour |
 | Unreal 5 | `MSYS_NO_PATHCONV=1 "<UE root>/Engine/Binaries/Win64/UnrealEditor.exe" "$(pwd -W 2>/dev/null || pwd)/<Game>.uproject" <MapURL> -game -windowed -ResX=1280 -ResY=720` | `HighResShot 1280x720 filename=<abs path>` console command | the path you pass (else `Saved/Screenshots/WindowsEditor/`) | `-nullrhi`, `-unattended` alone | one actor or `-ExecCmds` |
 
 ### Godot 4 — zero scaffold
 
 ```
-godot --path . --windowed --resolution 1280x720 --write-movie shots/shop.png --quit-after 60 res://scenes/shop.tscn
+godot.console --path . --windowed --write-movie shots/shop.png --quit-after 60 res://scenes/shop.tscn
 ```
 
 `--write-movie` is Movie Maker mode: with a `.png` target it writes a frame
@@ -67,7 +67,8 @@ last; a `shop.wav` lands beside them. `--fixed-fps` is applied automatically. Th
 scene path is positional; any `.tscn` can be launched directly, which is how step
 2 is satisfied. The frames are recorded at the project's viewport size
 (`display/window/size/viewport_width` and `_height`, 1152x648 when unset), not at
-`--resolution`, which only sizes the window; the log's `recording movie in
+`--resolution`, which only sizes the window, so set the capture size Omzi chose
+there; the log's `recording movie in
 <W>×<H>` line says which. The capture-on-trigger alternative below saves at the
 window size.
 

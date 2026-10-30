@@ -52,12 +52,14 @@
 # writes one beside each script and shader). Each left-out kind is counted in
 # an `excluded` row.
 #
-# Naming (the skill's Phase 3): all file names lowercase with underscores. The
-# built-in rule is the characters a-z 0-9 and _ in the name and a-z 0-9 in the
-# extension, one dot before the extension; a NAMING row lists what broke it, in
-# order of first appearance: uppercase, space, hyphen, dot (an extra one), other.
-# The art and audio patterns ([category]_[name]_[variant]_[size].[ext] and
-# [category]_[context]_[name]_[variant].[ext]) are NOT CHECKABLE from the
+# Naming (the skill's Phase 3): class scripts and component scenes (.gd, .tscn)
+# may be TitleCase matching class_name; every other name is lowercase words
+# joined by hyphens. The built-in rule is the characters a-z 0-9 and - in the
+# name (or a TitleCase name on .gd and .tscn) and a-z 0-9 in the extension, one
+# dot before the extension; a NAMING row lists what broke it, in order of first
+# appearance: uppercase, space, underscore, dot (an extra one), other.
+# The art and audio patterns ([category]-[name]-[variant]-[size].[ext] and
+# [category]-[context]-[name]-[variant].[ext]) are NOT CHECKABLE from the
 # skill: it defines no category or size values and its own examples disagree
 # on what fills the size slot, so a `check` row says so with the number of
 # files each would cover, and nothing is compared against them.
@@ -428,19 +430,21 @@ fi
   function clsof(c) {
     if (c ~ /[A-Z]/) return "uppercase"
     if (c == " ") return "space"
-    if (c == "-") return "hyphen"
+    if (c == "_") return "underscore"
     if (c == ".") return "dot"
     return "other"
   }
-  # The kinds of break in a name: a-z 0-9 and _ in the stem, a-z 0-9 in the
-  # extension (the part after the last dot), in order of first appearance.
+  # The kinds of break in a name: a-z 0-9 and - in the stem (a TitleCase stem
+  # is allowed on .gd and .tscn), a-z 0-9 in the extension (the part after the
+  # last dot), in order of first appearance.
   function namebreaks(b,    p, i, stem, ex, c) {
     cls = ""
     cgen++
     p = 0
     for (i = length(b); i >= 1; i--) if (substr(b, i, 1) == ".") { p = i; break }
     if (p == 0) { stem = b; ex = "" } else { stem = substr(b, 1, p - 1); ex = substr(b, p + 1) }
-    for (i = 1; i <= length(stem); i++) { c = substr(stem, i, 1); if (c !~ /[a-z0-9_]/) addcls(clsof(c)) }
+    if (!((ex == "gd" || ex == "tscn") && stem ~ /^[A-Z][A-Za-z0-9]*$/))
+      for (i = 1; i <= length(stem); i++) { c = substr(stem, i, 1); if (c !~ /[a-z0-9-]/) addcls(clsof(c)) }
     for (i = 1; i <= length(ex); i++) { c = substr(ex, i, 1); if (c !~ /[a-z0-9]/) addcls(clsof(c)) }
     return cls
   }
@@ -491,7 +495,7 @@ fi
     gdnaming = (eng == "godot" && namere == "")
     if (nodata != "") { namingst = "not_run"; namingd = nodata }
     else if (namere != "") { namingst = "ran"; namingd = "name_regex " namere }
-    else if (eng == "godot") { namingst = "ran"; namingd = "lowercase_underscore" }
+    else if (eng == "godot") { namingst = "ran"; namingd = "titlecase_or_lowercase_hyphen" }
     else { namingst = "not_run"; namingd = "no naming rule for " eng "; pass the art bible\047s rule with --name-regex" }
     unrealwhy = "asset files do not keep their source format, dimensions or sample rate"
     if (nodata != "") { potst = "not_run"; potd = nodata }
@@ -545,7 +549,7 @@ fi
       dims = "-"; w = -1; h = -1; rate = "-"
       if (namingst == "ran") {
         if (namere != "") { if (!(base ~ namere)) rname[++nname] = "NAMING\t" p "\tname_regex\tdoes not match " namere }
-        else { c = namebreaks(base); if (c != "") rname[++nname] = "NAMING\t" p "\tlowercase_underscore\t" c }
+        else { c = namebreaks(base); if (c != "") rname[++nname] = "NAMING\t" p "\ttitlecase_or_lowercase_hyphen\t" c }
       }
       if (ty == "texture" && eng != "unreal") {
         if (ex != "png") rnot[++nnot] = "NOTREAD\t" p "\tdims\tonly PNG headers are read, not " ex

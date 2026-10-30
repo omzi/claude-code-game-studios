@@ -68,8 +68,8 @@ Fixture defaults.
 1. Full-spec mode: Section 2's guided selection is skipped
 2. Skill asks the Godot language question (A GDScript / B C# / C Both); user picks GDScript
 3. Skill shows the Technology Stack and asks "May I write these engine settings to `CLAUDE.md`?"
-4. Technical preferences are presented with GDScript naming (snake_case files and
-   variables) and the A3 routing table: `.gd` → godot-gdscript-specialist,
+4. Technical preferences are presented with GDScript naming (snake_case variables;
+   TitleCase class-script files, kebab-case everything else) and the A3 routing table: `.gd` → godot-gdscript-specialist,
    `.gdshader` → godot-shader-specialist, `.tscn` → godot-specialist
 5. Because Section 2 never ran and no design artifact exists, the skill asks
    the project-shape question (2D/3D, web or not) instead of writing
@@ -85,7 +85,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] `engine.name` is Godot and `engine.language` is GDScript in `project.yaml`
-- [ ] `naming.variables` and `naming.files` are `snake_case`
+- [ ] `naming.variables` is `snake_case`; `naming.files` is TitleCase (class scripts) + kebab-case (all else)
 - [ ] Routing table includes `.gd`, `.gdshader`, and `.tscn` entries; `specialists.code` is `godot-gdscript-specialist`
 - [ ] The rendering/physics shape is asked, not inferred from the engine name
 - [ ] "May I write" is asked before `CLAUDE.md` and before `project.yaml` are written
@@ -251,7 +251,7 @@ Fixture defaults.
 - [ ] No `commands.*` value names bare `godot`
 - [ ] Every Godot command value is a single-quoted scalar and none holds both quote types
 - [ ] `engine.path` records the editor executable
-- [ ] Variant — the probe finds nothing and the user does not know where Godot is: bare `godot` is kept under a `# TODO: godot is not on PATH here` comment, and the skill says the commands will not run until the path is set
+- [ ] Variant — the probe finds nothing and the user does not know where Godot is: bare `godot.console` is kept under a `# TODO: godot.console is not on PATH here` comment, and the skill says the commands will not run until the path is set
 
 ---
 
@@ -290,7 +290,7 @@ Fixture defaults.
 - [ ] Respects engine argument when provided (skips guided selection)
 - [ ] Dual-writes `project.yaml` and `technical-preferences.md`, then reads `project.yaml` back to confirm they agree
 - [ ] On re-run, edits existing `project.yaml` blocks in place without duplicating them
-- [ ] Writes the probed editor path into `commands.*` — for Unity always, for Godot whenever `godot` is not on `PATH` — never a bare executable that does not resolve
+- [ ] Writes the probed editor path into `commands.*` — for Unity always, for Godot whenever `godot.console` is not on `PATH` — never a bare executable that does not resolve
 - [ ] Never defaults the Godot export preset or the Unity build target — asks for it; Unreal's `commands` are best-effort values matched to the machine's OS (`-platform=Win64` on Windows, `Linux` on Linux) under a `# TODO` comment; on macOS only `build` is written, and `test`, `run` and `smoke` stay TODO lines
 - [ ] Writes the Section 3 probe into VERSION.md's `Installed at pin time` row whatever the outcome, after asking "May I record `Installed at pin time: …` in `docs/engine-reference/<engine>/VERSION.md`?"
 - [ ] Verdict is COMPLETE after configuration is written

@@ -64,8 +64,8 @@ Fixture defaults.
 
 **Fixture:**
 - `project.yaml`: `engine.name: godot`, so the unit-test root is `tests/unit/`; `modes.automation` unset (collaborative)
-- `production/epics/combat/story-001-damage-calc.md` (slug `damage-calc`): `## Test Evidence` gives Story Type Logic and the path `tests/unit/combat/damage-calc_test.gd`; `## Acceptance Criteria` includes "damage is never below 1" and "critical hits multiply damage by 2.0"
-- `tests/unit/combat/damage-calc_test.gd` opens with `# Story: production/epics/combat/story-001-damage-calc.md`, has 4 test functions with 3+ assertions each, named like `test_damage_calc_zero_armor_returns_base_damage` and `test_damage_calc_max_crit_doubles_damage`, and names the GDD's `damage_formula` in a comment
+- `production/epics/combat/story-001-damage-calc.md` (slug `damage-calc`): `## Test Evidence` gives Story Type Logic and the path `tests/unit/combat/DamageCalc.test.gd`; `## Acceptance Criteria` includes "damage is never below 1" and "critical hits multiply damage by 2.0"
+- `tests/unit/combat/DamageCalc.test.gd` opens with `# Story: production/epics/combat/story-001-damage-calc.md`, has 4 test functions with 3+ assertions each, named like `test_damage_calc_zero_armor_returns_base_damage` and `test_damage_calc_max_crit_doubles_damage`, and names the GDD's `damage_formula` in a comment
 
 **Input:** `/test-evidence-review production/epics/combat/story-001-damage-calc.md`
 
@@ -91,7 +91,7 @@ Fixture defaults.
 **Fixture:**
 - `project.yaml`: `engine.name: godot`, `modes.rigor: standard` (so `qa.level: standard` — tests are required); no `testing.strict` block
 - `production/epics/combat/story-002-crit-roll.md` (slug `crit-roll`): Story Type Logic
-- `tests/unit/combat/crit-roll_test.gd` has `func test_1()` with no assertions and `func test_crit_roll_applies_multiplier()` with one assertion
+- `tests/unit/combat/CritRoll.test.gd` has `func test_1()` with no assertions and `func test_crit_roll_applies_multiplier()` with one assertion
 
 **Input:** `/test-evidence-review production/epics/combat/story-002-crit-roll.md`
 

@@ -32,8 +32,8 @@
 - **Classes**: [TO BE CONFIGURED]
 - **Variables**: [TO BE CONFIGURED]
 - **Signals/Events**: [TO BE CONFIGURED]
-- **Files**: [TO BE CONFIGURED]
-- **Scenes/Prefabs**: [TO BE CONFIGURED]
+- **Files**: TitleCase matching class_name for class scripts (e.g., `PlayerController.gd`); lowercase words joined by hyphens for every other file (e.g., `fire-crackle.ogg`); no underscores or spaces in res:// paths
+- **Scenes/Prefabs**: TitleCase matching class_name for reusable component scenes (e.g., `Traveller.tscn`); lowercase words joined by hyphens for levels and every other scene (e.g., `chapter-one.tscn`). Folders: lowercase words joined by hyphens
 - **Constants**: [TO BE CONFIGURED]
 
 ## Performance Budgets

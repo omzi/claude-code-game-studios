@@ -9,8 +9,8 @@ missing assets. It reads the art bible or asset standards from the design docs
 (Phase 1), resolves the engine and its code root and scans the asset root with
 Glob (Phase 2), measures sizes and formats with the pre-approved read-only
 commands (`stat`, `file`, `od`, `wc`, `du`), and checks Godot names against its
-own patterns — art `[category]_[name]_[variant]_[size].[ext]`, audio
-`[category]_[context]_[name]_[variant].[ext]`, all lowercase with underscores —
+own rule — TitleCase for class scripts and component scenes, lowercase words
+joined by hyphens for everything else, no underscores or spaces —
 and Unity and Unreal names only against a rule the art bible states. Orphaned
 and missing assets are found by searching the **code root** for asset
 references; GDD-level completeness is `/content-audit`'s job. The report lists
@@ -56,8 +56,8 @@ Fixture defaults.
 **Fixture:**
 - `project.yaml`: `engine.name: godot`, so the asset root is `assets/` and the code root `src/`
 - `design/art/art-bible.md` Asset Standards: textures PNG, power-of-two, ≤2MB; SFX OGG, 44.1 kHz, ≤500KB (no duration budget)
-- `assets/art/characters/` contains: `char_grunt_idle_512.png`, `char_sniper_run_512.png` (512×512 PNG, 300KB each)
-- `assets/audio/sfx/` contains: `sfx_player_jump_01.ogg`, `sfx_item_pickup_01.ogg` (OGG, 44.1 kHz, 80KB and under 1 s each)
+- `assets/art/characters/` contains: `char-grunt-idle-512.png`, `char-sniper-run-512.png` (512×512 PNG, 300KB each)
+- `assets/audio/sfx/` contains: `sfx-player-jump-01.ogg`, `sfx-item-pickup-01.ogg` (OGG, 44.1 kHz, 80KB and under 1 s each)
 - `src/` references all four files
 
 **Input:** `/asset-audit`
@@ -110,24 +110,24 @@ Fixture defaults.
 **Fixture:**
 - `project.yaml`: `engine.name: godot`
 - `design/art/art-bible.md` asset standards: SFX OGG ≤500KB; music OGG or MP3 ≤8MB
-- `assets/audio/music/music_menu_theme_01.wav` exists (WAV format, 6MB), referenced from code
-- `assets/audio/sfx/sfx_player_footstep_01.ogg` exists (OGG format, 40KB), referenced from code
+- `assets/audio/music/music-menu-theme-01.wav` exists (WAV format, 6MB), referenced from code
+- `assets/audio/sfx/sfx-player-footstep-01.ogg` exists (OGG format, 40KB), referenced from code
 
 **Input:** `/asset-audit`
 
 **Expected behavior:**
 1. Skill applies the Phase 3 audio format standard (OGG for SFX, OGG/MP3 for music)
 2. Skill identifies the WAV file's format with `file` or a header read
-3. The Format Violations table lists `music_menu_theme_01.wav` with expected OGG/MP3 and actual WAV
-4. `sfx_player_footstep_01.ogg` does not appear in any violation table; both files are within their size budgets
+3. The Format Violations table lists `music-menu-theme-01.wav` with expected OGG/MP3 and actual WAV
+4. `sfx-player-footstep-01.ogg` does not appear in any violation table; both files are within their size budgets
 5. Recommendations name the target format for the WAV file (re-export as OGG or MP3)
 6. Verdict is WARNINGS (a format issue is correctable)
 
 **Assertions:**
-- [ ] `music_menu_theme_01.wav` appears in the Format Violations table with Expected Format OGG/MP3 and Actual Format WAV
+- [ ] `music-menu-theme-01.wav` appears in the Format Violations table with Expected Format OGG/MP3 and Actual Format WAV
 - [ ] The recommendation for the WAV file names OGG or MP3 as its target format
 - [ ] Verdict is WARNINGS (not NON-COMPLIANT) for a format issue alone
-- [ ] `sfx_player_footstep_01.ogg` is not listed in any violation table
+- [ ] `sfx-player-footstep-01.ogg` is not listed in any violation table
 - [ ] Skill does not modify or convert any asset files
 
 ---

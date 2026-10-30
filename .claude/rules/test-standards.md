@@ -9,7 +9,7 @@ paths:
 
 - Test naming follows the engine's language — every name says the scenario and
   the expected result:
-  - **Godot (gdUnit4):** file `[system]_[feature]_test.gd`, function
+  - **Godot (gdUnit4):** file `[ClassName].test.gd`, named after the class it tests (e.g. `BeatClock.test.gd` for `BeatClock.gd`); the suite extends GdUnitTestSuite and has no class_name; a bug's regression suite adds `Regression` (`BeatClockRegression.test.gd`), function
     `test_[scenario]_[expected]`
   - **Unity (NUnit):** class `[System]Tests` in a file of the same name, method
     `[Scenario]_[Expected]` in PascalCase

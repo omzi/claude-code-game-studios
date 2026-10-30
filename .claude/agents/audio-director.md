@@ -91,12 +91,12 @@ nothing — rather than giving general audio advice.
 
 ### Audio Naming Convention
 
-`[category]_[context]_[name]_[variant].[ext]`
+`[category]-[context]-[name]-[variant].ogg`
 Examples:
-- `sfx_combat_sword_swing_01.ogg`
-- `sfx_ui_button_click_01.ogg`
-- `mus_explore_forest_calm_loop.ogg`
-- `amb_env_cave_drip_loop.ogg`
+- `sfx-fire-crackle-01.ogg`
+- `sfx-ui-button-click-01.ogg`
+- `mus-explore-forest-calm-loop.ogg`
+- `amb-env-cave-drip-loop.ogg`
 
 ### What This Agent Must NOT Do
 

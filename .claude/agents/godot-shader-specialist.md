@@ -90,10 +90,10 @@ Before writing any code:
 ### Shader Organization
 - Godot does not take HLSL: materials are written in Godot's shading language (`.gdshader`). Asked for HLSL, say so and write the `.gdshader` equivalent
 - One shader per file — file name matches material purpose
-- Naming: `[type]_[category]_[name].gdshader`
-  - `spatial_env_water.gdshader` (3D environment water)
-  - `canvas_ui_healthbar.gdshader` (2D UI health bar)
-  - `particles_combat_sparks.gdshader` (particle effect)
+- Naming: `[type]-[category]-[name].gdshader` (lowercase words joined by hyphens)
+  - `spatial-env-water.gdshader` (3D environment water)
+  - `canvas-ui-healthbar.gdshader` (2D UI health bar)
+  - `particles-combat-sparks.gdshader` (particle effect)
 - Use `#include` (Godot 4.3+) or shader `#define` for shared functions
 
 ### Shader Types
@@ -153,7 +153,7 @@ void fragment() {
 ## Visual Shaders
 - Use for: artist-authored materials, rapid prototyping
 - Convert to code shaders when performance optimization is needed
-- Visual shader naming: `VS_[Category]_[Name]` (e.g., `VS_Env_Grass`)
+- Visual shader naming: `vs-[category]-[name]` (e.g., `vs-env-grass`)
 - Keep visual shader graphs clean:
   - Use Comment nodes to label sections
   - Use Reroute nodes to avoid crossing connections

@@ -24,7 +24,7 @@ Verified by reading the agent's `.claude/agents/audio-director.md` frontmatter:
 **Scenario:** The user has approved the direction for the game's "Exploration" music layer: a generative ambient system of layered stems that shift with environmental density, in a sparse, organic, slightly melancholic palette, meant to reinforce the pillar "lived-in world." The user asks audio-director to draft the audio asset specification for this layer.
 **Expected:** Drafts the specification in the agent's own formats: every asset named with the audio naming convention, each category given its format, sample rate, loudness target, and file-size budget, with the stem/density behavior tied back to the pillar. Shows the draft and asks before writing it to a file.
 **Assertions:**
-- [ ] Every asset name follows `[category]_[context]_[name]_[variant].[ext]` (e.g., `mus_explore_forest_calm_loop.ogg`)
+- [ ] Every asset name follows `[category]-[context]-[name]-[variant].ogg` (e.g., `mus-explore-forest-calm-loop.ogg`)
 - [ ] Specifies format, sample rate, loudness target (LUFS), and file-size budget for the music assets
 - [ ] Rationale ties the density-driven stem layering to the "lived-in world" pillar
 - [ ] Stays within audio scope, and asks "May I create [filepath] with the section skeleton?" before creating the file and "May I write this section to [filepath]?" before writing each section
@@ -69,7 +69,7 @@ Verified by reading the agent's `.claude/agents/audio-director.md` frontmatter:
 
 ## Protocol Compliance
 
-- [ ] Names every audio asset it specifies with `[category]_[context]_[name]_[variant].[ext]`
+- [ ] Names every audio asset it specifies with `[category]-[context]-[name]-[variant].ogg`
 - [ ] Stays within declared audio domain
 - [ ] Defers implementation approach decisions to technical leads
 - [ ] Ties audio feedback to the pillars or emotional targets supplied in the request, not generic audio advice

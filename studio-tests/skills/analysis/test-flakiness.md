@@ -57,7 +57,7 @@ Fixture defaults.
 - `project.yaml`: `engine.name: godot`; `modes.automation` unset (collaborative)
 - `test-results/` holds 6 gdUnit4 JUnit XML files from 6 runs of the same commit
 - `test_loot_drop_rolls_rare_item` fails in 2 of the 6 runs (33%); the other 40 tests pass in all 6
-- `tests/unit/loot/loot_drop_test.gd` calls `randf()` with no seed
+- `tests/unit/loot/LootDrop.test.gd` calls `randf()` with no seed
 - `tests/regression-suite.md` has a Quarantined Tests table with 1 existing entry
 
 **Input:** `/test-flakiness scan`
@@ -66,7 +66,7 @@ Fixture defaults.
 1. Skill finds the XML files in `test-results/` and parses `<testcase name=` and `<failure` / `<error` entries
 2. Skill builds `test_id → [run1 … run6]` and finds one test with both outcomes
 3. 33% is above 25% over 6 runs → **High** flakiness, Confidence confirmed → quarantine immediately
-4. Grep of `loot_drop_test.gd` finds `randf` → likely cause Random seed; fix direction: pass an explicit seed
+4. Grep of `LootDrop.test.gd` finds `randf` → likely cause Random seed; fix direction: pass an explicit seed
 5. The quarantine recommendation names gdUnit4's GDScript skip parameters (`_do_skip := true`, `_skip_reason := "flaky: ..."`) as the way to skip it
 6. Summary shows Runs analysed 6, Tests tracked 41, the flaky test with a 33% fail rate, and 40 tests with consistent results
 7. Skill asks "May I update the quarantine section of `tests/regression-suite.md` with the flaky tests found?" and, separately, "May I write a full flakiness report to `production/qa/flakiness-report-[date].md`?"
