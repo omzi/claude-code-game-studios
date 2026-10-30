@@ -71,7 +71,7 @@ Fixture defaults.
    against the table in `localization/strings.csv`
 2. Skill proposes one new entry per unkeyed string, with a key in the form
    `[category].[subcategory].[description]` (e.g. `ui.hud.health_label`)
-3. Each new entry carries a `context` field: where it appears, maximum length,
+3. Each new entry carries a `_context` column cell: where it appears, maximum length,
    placeholder meaning
 4. Skill presents the diff and asks "May I write these new entries to
    `res://localization/strings.csv`?"
@@ -80,7 +80,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Proposed keys follow `[category].[subcategory].[description]`
-- [ ] Every new entry includes a `context` field
+- [ ] Every new entry includes a `_context` column cell
 - [ ] The diff is shown and "May I write" names `res://localization/strings.csv` before any write
 - [ ] Only the three new entries are written — existing entries are not rewritten
 - [ ] Verdict is COMPLETE

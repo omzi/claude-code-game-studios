@@ -89,7 +89,8 @@ Before drafting anything:
   assets/. On another engine, use its native string tables.
 - **Fallback chains**: Define a fallback order (e.g., `fr-CA -> fr -> en`).
   Missing strings must fall back gracefully, never display raw keys to players.
-- **Pluralization**: Use ICU MessageFormat or equivalent for plural rules,
+- **Pluralization**: Use ICU MessageFormat or equivalent (on Godot, the CSV's `?plural`
+  column and plural rows, which the 4.7 importer reads) for plural rules,
   gender agreement, and parameterized strings — with every plural category the
   locale's CLDR rules define (Russian: one, few, many, other; `other` covers
   fractions, and ICU requires it in every plural message).

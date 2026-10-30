@@ -93,13 +93,16 @@ sign-off records — the completion summary lists it, so it must exist.
 #### Godot 4 (`Engine: Godot`)
 
 **Do not write a runner script.** gdUnit4 ships its own command-line runner,
-`res://addons/gdUnit4/bin/GdUnitCmdTool.gd`. The command CI, `/smoke-check`
-and `commands.test` use is:
+`res://addons/gdUnit4/bin/GdUnitCmdTool.gd`. The command CI uses (a Linux
+runner, where the executable is plain `godot`) is:
 
 ```bash
-godot.console --headless --path . --import
-godot.console --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode
+godot --headless --path . --import
+godot --headless -s -d --remote-debug tcp://127.0.0.1:0 res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a res://tests --ignoreHeadlessMode
 ```
+
+`/smoke-check` and `commands.test` run the same two commands locally with
+`godot.console`, the studio's console executable.
 
 Run the import first. A fresh clone has no `.godot/` class cache, and a run
 without one exits **1** — `GdUnitCmdTool.gd` did not load (`Failed to load

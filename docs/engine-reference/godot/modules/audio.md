@@ -83,9 +83,11 @@ func play_pooled(stream: AudioStream) -> void:
 ```gdscript
 # One AudioStreamSynchronized holds every stem; all stems play in lockstep.
 # Add and remove layers by fading a stem's volume, never by starting it late.
-# Checked against the 4.7 class reference: get/set_sync_stream_volume(index, db)
-# and MethodTweener.set_trans/set_ease exist as used. The reference does not say
-# whether a volume change reaches a stem that is already playing: verify in-engine.
+# Checked against 4.7.2: get/set_sync_stream_volume(index, db) and
+# MethodTweener.set_trans/set_ease exist as used. AudioStreamPlaybackSynchronized
+# reads each stem's volume on every mix chunk, so a fade reaches a stem that is
+# already playing. A quiet stem keeps mixing, which keeps it in sync; the
+# inspector range stops at -60 dB, which is quiet, not silent.
 @onready var music: AudioStreamPlayer = %Music
 
 func fade_stem(index: int, to_db: float, seconds: float) -> void:

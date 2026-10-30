@@ -68,7 +68,9 @@ Report all findings with file paths and line numbers. This mode is read-only —
 - Generate new entries for strings not yet keyed
 - Suggest key names following the convention: `[category].[subcategory].[description]`
   - Example: `ui.hud.health_label`, `dialogue.npc.merchant.greeting`, `menu.main.play_button`
-- Each new entry must include a `context` field — a translator comment explaining:
+- Each new entry must include a `_context` column cell — a translator comment explaining
+  (the Godot 4.7 CSV importer ignores any column whose header starts with `_`; never
+  use `?context`, which is Godot's lookup context and changes what `tr()` matches):
   - Where it appears (which screen, which scene)
   - Maximum character length
   - Any placeholder meaning (`{playerName}` = the player's chosen display name)
@@ -88,7 +90,7 @@ Read the string table `res://localization/strings.csv` (one column per locale). 
 
 - **Completeness** — key exists in source (en) but no translation for this locale
 - **Placeholder mismatches** — source has `{name}` but translation omits it or adds extras
-- **String length violations** — translation exceeds the character limit recorded in the source `context` field
+- **String length violations** — translation exceeds the character limit recorded in the source `_context` column
 - **Plural form count** — locale requires N plural forms; translation provides fewer
 - **Orphaned keys** — translation exists but nothing in the code root references the key
 - **Stale translations** — source string changed after translation was written (flag for re-translation)
@@ -183,7 +185,7 @@ The following must appear verbatim in all locales:
 | `{count}` | Integer quantity | "3" |
 
 ## Character Limits
-Tight UI fields with hard limits are marked in the string table `context` field.
+Tight UI fields with hard limits are marked in the string table `_context` column.
 Where no limit is stated, target ±30% of the English length as a guideline.
 
 ## Contact
@@ -440,8 +442,8 @@ Ask: "May I write this localization QA report to `production/localization/loc-qa
 
 ### Rules
 - English (en) is always the source locale
-- Every string table entry must include a `context` field with translator notes, character limits, and placeholder meaning
-- Never modify translation files directly — generate diffs for review
+- Every string table entry must include a `_context` column cell with translator notes, character limits, and placeholder meaning
+- Never modify existing translations directly — generate diffs for review; `extract` only adds new source rows
 - Character limits must be defined per-UI-element and enforced in validate mode
 - String freeze must be called before sending strings to translators — never translate a moving target
 - RTL support must be designed in from the start — retrofitting RTL layout is expensive
