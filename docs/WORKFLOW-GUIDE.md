@@ -1412,7 +1412,7 @@ The system has 15 hooks that run automatically:
 | `validate-read.sh` | Before a file read | Refuses a whole-file read of a design doc over 40 KB and answers with its headings |
 | `validate-write.sh` | Before a file write | Warns when a write would break a rule the skills state (never blocks) |
 | `validate-registry.sh` | Before an entity or TR-ID registry write | Warns when an entry would be deleted or renumbered, or a status is not in the header's list |
-| `validate-assets.sh` | After a file write | Checks data-file JSON, and asset naming in Godot's `assets/` |
+| `validate-assets.sh` | After a file write | Checks data-file JSON, and studio naming on every res:// path (`.claude/scripts/naming-check.sh`) |
 | `validate-skill-change.sh` | Skill file written | Advises running `/skill-test` after `.claude/skills/` changes |
 | `log-agent.sh` | Agent start | Logs agent invocations for audit trail |
 | `log-agent-stop.sh` | Agent stop | Completes agent audit trail (start + stop) |

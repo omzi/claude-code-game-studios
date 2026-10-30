@@ -1887,19 +1887,24 @@ conventions into a brief, manifest or spec. **NOT by `/code-review` and NOT by
 
 > **These conventions are guidance, not a gate.** They reach your project by
 > being passed into briefs, manifests and specs for whoever writes the code.
-> Nothing checks the result: `/code-review` does not validate files against them
-> and `validate-commit.sh` does not warn on violations — neither contains any
-> naming logic. If you need enforcement, it has to be added.
+> No check reads these values: `/code-review` (its Phase 4 naming item) and
+> `validate-commit.sh` (through `naming-check.sh`) apply the fixed studio
+> file-name rule below, not these keys, and nothing checks variable, signal or
+> constant names. If you need the configured values enforced, it has to be added.
 >
-> **Asset filenames.** `validate-assets.sh` warns when a file under Godot's
-> `assets/` has an uppercase letter, a space or a hyphen in its name (it expects
-> lowercase with underscores), and it takes no config input. `/asset-spec`
-> specifies asset names from `naming.*`. Unity's `Assets/` and Unreal's `Content/`
-> are not naming-checked: those engines name assets in PascalCase. On Godot-C#,
-> where `/setup-engine` sets `naming.files: PascalCase`, the hook warns on assets
-> named exactly as `/asset-spec` specified them. `naming.files` describes
-> **source** files by its own examples (`PlayerController.cs`), and no key governs
-> asset filenames, so treat the hook's naming warning as advisory there.
+> **Asset filenames.** `validate-assets.sh` (each file written) and
+> `validate-commit.sh` (each staged file) source `.claude/scripts/naming-check.sh`
+> and warn, never block. It checks every res:// path, not only `assets/`: class
+> scripts and component scenes (`.gd`, `.tscn`, `.test.gd` suites and their
+> `.uid` files) are TitleCase matching class_name; every other file and every
+> folder is lowercase words joined by hyphens; no underscores or spaces. It takes
+> no config input, and leaves out hidden paths, third-party `addons/` (but not
+> `addons/core/`), `android/`, `ios/`, `design/`, `docs/`, `production/`, `tools/`,
+> `studio-tests/`, Markdown files and the names Godot itself requires
+> (`export_presets.cfg`, `default_bus_layout.tres`). `/asset-spec` specifies asset
+> names from `naming.*`. On Unity, Unreal or Godot-C#, where files are PascalCase
+> (`PlayerController.cs`), the check warns on names those engines expect, so
+> treat its warnings as advisory there.
 
 > **Moved from `technical-preferences.md`**, which is being deleted. Naming
 > conventions are project-level facts shared by everyone on the project, so they

@@ -28,11 +28,10 @@ EXIT_CODE=0
 WARNINGS=""
 
 for file in $MERGED_ASSETS; do
-    filename=$(basename "$file")
-
-    # Check naming convention (lowercase with underscores)
-    if echo "$filename" | grep -qE '[A-Z[:space:]-]'; then
-        WARNINGS="$WARNINGS\nNAMING: $file -- must be lowercase with underscores"
+    # Check naming convention (the studio rule in .claude/scripts/naming-check.sh)
+    naming=$(bash .claude/scripts/naming-check.sh "$file")
+    if [ -n "$naming" ]; then
+        WARNINGS="$WARNINGS\n${naming#  }"
         EXIT_CODE=1
     fi
 
