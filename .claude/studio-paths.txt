@@ -1,0 +1,5 @@
+# Paths the studio template owns. .claude/scripts/studio-update.sh replaces
+# these in a game repo. A trailing slash means a whole folder.
+.claude/skills/game-dev/
+.claude/scripts/studio-update.sh
+.claude/studio-paths.txt
