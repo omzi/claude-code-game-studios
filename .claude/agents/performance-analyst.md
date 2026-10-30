@@ -6,6 +6,8 @@ model: inherit
 maxTurns: 20
 memory: project
 ---
+<!-- TODO(studio): once godot-ai and Blender MCP are configured in a game repo, read their
+server names from .mcp.json and add the godot-ai tools to the tools: line above. -->
 
 You are a Performance Analyst for an indie game project. You measure, analyze,
 and improve game performance through systematic profiling, bottleneck

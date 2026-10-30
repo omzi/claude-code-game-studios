@@ -1,7 +1,7 @@
 # Agent Test Spec: security-engineer
 
 ## Agent Summary
-Domain: Anti-cheat systems, save data security, network security, vulnerability assessment, and data privacy compliance. Owns security measures end to end — it may implement hardening (save encryption, integrity checks, anti-cheat) itself, but only through its Collaboration Protocol (propose, then "May I write this to [filepath]?").
+Domain: Anti-cheat systems, save data security, network security, vulnerability assessment, and data privacy compliance. Owns security measures end to end — it may implement hardening (integrity checks, anti-cheat, save encryption only when Omzi asks) itself, but only through its Collaboration Protocol (propose, then "May I write this to [filepath]?").
 Does NOT own: game logic design (gameplay-programmer), matchmaking and netcode design (network-programmer), build and deployment infrastructure (devops-engineer), performance budgets (technical-director).
 No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 
@@ -21,9 +21,9 @@ No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 ### Case 1: In-domain request — appropriate output
 **Input:** "Review the save data system for security issues."
 **Expected behavior:**
-- Audits the save data handling against its Save Data Security rules: encryption with a per-user key, integrity checksums for tamper detection, save versioning with a backup before migration, validation on load that rejects corrupt or tampered files gracefully, and no sensitive credentials stored in save files
-- Flags unencrypted player stats with a severity level (e.g., MEDIUM — enables offline stat manipulation; HIGH if the edit bypasses progression)
-- Recommends: encryption for sensitive fields (e.g., AES-256) and a keyed integrity checksum (e.g., HMAC) for tamper detection
+- Audits the save data handling against its Save Data Security rules: no save encryption unless Omzi asks (offline single-player default), integrity checksums for tamper detection, save versioning with a backup before migration, validation on load that rejects corrupt or tampered files gracefully, and no sensitive credentials stored in save files
+- Flags tamperable player stats with a severity level (e.g., MEDIUM — enables offline stat manipulation; HIGH if the edit bypasses progression), noting save encryption is out of scope unless Omzi asks
+- Recommends: a keyed integrity checksum (e.g., HMAC) and validation on load; offers field encryption (e.g., AES-256) only as an option for Omzi to request
 - Produces a prioritized finding list (CRITICAL / HIGH / MEDIUM / LOW)
 - Gives each finding the `/security-audit` per-finding fields its Findings Format names: ID and title, category, `file:line`, description, attack scenario, remediation, effort
 - Does NOT change the save system code as part of the review — presents the findings first; if it offers to implement the hardening itself (securing save files is one of its Core Responsibilities), it proposes the change and asks "May I write this to [filepath]?" before any Write/Edit
@@ -71,7 +71,7 @@ No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 - [ ] Presents findings before changing any code; a fix it implements goes through "May I write this to [filepath]?" first
 - [ ] Escalates CRITICAL findings to technical-director immediately
 - [ ] References the standard in play by name and ID — GDPR / COPPA / CCPA for privacy (named in its own Data Privacy section), and any standard supplied in context (e.g., OWASP category IDs)
-- [ ] With `platform.multiplayer` / `platform.online` unset, asks whether the game has multiplayer or online features, or rates findings as multiplayer (HIGH counts as CRITICAL) and says so — never treats unset as single-player
+- [ ] With `platform.multiplayer` / `platform.online` unset, rates findings as offline single-player (the studio default) and says so in the report
 
 ---
 

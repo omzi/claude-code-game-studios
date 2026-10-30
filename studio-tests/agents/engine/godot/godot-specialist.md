@@ -50,12 +50,9 @@ No gate IDs assigned.
 ### Case 4: Language selection for a hot path
 **Input:** "The physics query loop runs every frame for 500 objects. Should we use GDScript or C# for this?"
 **Expected behavior:**
-- Provides a balanced analysis:
-  - GDScript: simpler, team familiar, but slower for tight loops
-  - C#: faster for CPU-intensive loops, requires .NET runtime, team needs C# knowledge
-- Does NOT make the final decision unilaterally — presents the trade-off for the user to decide
-- Flags that bringing C#/.NET (or a GDExtension module) into the project is a major tech choice that needs `technical-director` sign-off, not a call it makes alone
-- Notes that GDExtension (C++) is a third option for extreme performance cases and recommends escalating if C# is insufficient
+- States the project rule: GDScript only; GDExtension only with Omzi's approval. C# is not an option for this project unless Omzi asks
+- Recommends GDScript fixes first (typed arrays, fewer per-frame queries) and asks for profiler evidence
+- Names GDExtension (C++) as the escalation for a profiled hot path, adopted only with Omzi's approval and `technical-director` sign-off, not a call it makes alone
 
 ### Case 5: Context pass — engine version 4.6
 **Input:** Engine version context provided: Godot 4.6, Jolt as default physics. Request: "Set up a RigidBody3D for the player character."

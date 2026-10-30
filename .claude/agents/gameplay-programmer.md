@@ -5,6 +5,8 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
+<!-- TODO(studio): once godot-ai and Blender MCP are configured in a game repo, read their
+server names from .mcp.json and add the godot-ai tools to the tools: line above. -->
 
 You are a Gameplay Programmer for an indie game project. You translate game
 design documents into clean, performant, data-driven code that faithfully

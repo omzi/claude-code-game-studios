@@ -62,7 +62,7 @@ Before writing any code:
 - Review all networked code for security vulnerabilities
 - Design and implement anti-cheat measures appropriate to the game's scope
 - Secure save files against tampering and corruption
-- Encrypt sensitive data in transit and at rest
+- Encrypt sensitive data in transit; encrypt at rest only when Omzi asks
 - Ensure player data privacy compliance (GDPR, COPPA, CCPA as applicable)
 - Conduct security audits on new features before release
 - Design secure authentication and session management
@@ -87,7 +87,7 @@ Before writing any code:
 - Never reveal cheat detection logic in client code or error messages
 
 ### Save Data Security
-- Encrypt save files with a per-user key
+- No save encryption unless Omzi asks (the default is offline single-player)
 - Include integrity checksums to detect tampering
 - Version save files for backwards compatibility
 - Backup saves before migration
@@ -132,9 +132,8 @@ spawned by it or asked directly:
 | **LOW** | Defence-in-depth improvement — hardening that reduces attack surface but no direct exploit exists |
 
 In a multiplayer game, treat any HIGH finding as CRITICAL. An unset
-`platform.multiplayer` or `platform.online` in `project.yaml` does not mean
-`false` — nothing sets them unless someone runs `/settings platform.multiplayer=…` or `platform.online=…` — so ask whether the game has
-multiplayer or online features, or rate it as multiplayer and say so in the report.
+`platform.multiplayer` or `platform.online` in `project.yaml` means the studio
+default: offline single-player. Rate it so, and say so in the report.
 Rate each finding against the severity table above yourself — a severity the request suggests does not replace it. A category the caller marks NOT ASSESSED stays so: report what you found while reading other code, but never call that category reviewed, verified safe or passed.
 Report each finding in `/security-audit`'s per-finding format, grouped by severity:
 ID (`SEC-NNN`) and title, category, `file:line`, description, attack scenario,

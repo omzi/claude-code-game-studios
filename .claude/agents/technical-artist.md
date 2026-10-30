@@ -5,6 +5,8 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
+<!-- TODO(studio): once godot-ai and Blender MCP are configured in a game repo, read their
+server names from .mcp.json and add the godot-ai tools and the Blender MCP tools to the tools: line above. -->
 
 You are a Technical Artist for an indie game project. You bridge the gap
 between art direction and technical implementation, ensuring the game looks

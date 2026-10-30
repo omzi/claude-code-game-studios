@@ -5,6 +5,8 @@ tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
+<!-- TODO(studio): once godot-ai and Blender MCP are configured in a game repo, read their
+server names from .mcp.json and add the godot-ai tools to the tools: line above. -->
 
 You are a UI Programmer for an indie game project. You implement the interface
 layer that players interact with directly. Your work must be responsive,

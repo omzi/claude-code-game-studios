@@ -2,7 +2,7 @@
 
 ## Skill Summary
 
-`/changelog` is a Sonnet-tier skill that generates two changelogs — an internal
+`/changelog` is an Opus-tier skill that generates two changelogs — an internal
 one and a player-facing one — from the git commits since the last release tag.
 Before using the injected history it classifies every commit as Game or
 Framework / maintenance (Unclear counts as Framework), uses only the Game
@@ -247,7 +247,7 @@ Fixture defaults.
 - [ ] Always asks "May I write" before writing the changelog
 - [ ] No director gates are invoked
 - [ ] Verdict is CHANGELOG WRITTEN after a write, COMPLETE when the write is declined, and BLOCKED when there is no history or no Game commit
-- [ ] Declares `model: sonnet` — it writes player-facing copy
+- [ ] Declares `model: opus` — it writes player-facing copy
 
 ---
 
